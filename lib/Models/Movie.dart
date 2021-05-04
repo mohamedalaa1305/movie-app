@@ -1,10 +1,20 @@
 import 'package:flutter/cupertino.dart';
+import 'package:movie_app/Helper.dart';
 import 'package:movie_app/Models/Media.dart';
 import 'package:movie_app/Models/Person..dart';
+import 'package:movie_app/Network.dart';
+
+import 'MediaImage.dart';
+import 'MediaVideo.dart';
+
+Network api = new Network();
 
 class Movie extends Media {
+  final String revenue, budget;
   Movie({
     @required String id,
+    this.revenue,
+    this.budget,
     String posterurl,
     String title,
     String overview,
@@ -14,9 +24,13 @@ class Movie extends Media {
     String votecount,
     String imdbID,
     String status,
+    String backdropurl,
     List<String> genres,
     List<Person> cast,
     List<Person> crew,
+    List<MediaImage> posters,
+    backdrops,
+    List<MediaVideo> videos,
   }) : super(
           id: id,
           posterurl: posterurl,
@@ -31,11 +45,11 @@ class Movie extends Media {
           cast: cast,
           crew: crew,
           status: status,
+          backdrops: backdrops,
+          posters: posters,
+          videos: videos,
+          backdropurl: backdropurl,
         ) {
-    mediaType = 'movie';
-  }
-  @override
-  String toString() {
-    return 'movie';
+    super.mediaType = 'movie';
   }
 }

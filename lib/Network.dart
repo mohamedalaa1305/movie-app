@@ -1,4 +1,5 @@
 import 'dart:convert' as convert;
+import 'dart:io';
 import 'package:http/http.dart' as http;
 
 class Network {
@@ -16,18 +17,66 @@ class Network {
   final List<String> mediaTypes = ['movie', 'tv', 'person'];
   final List<String> trendingTimes = ['day', 'week'];
 
-  Future getMovie(String id) async {
-    final String url = domain + "movie/" + id + apikey;
+  Future getDetails(String id, String mediaType) async {
+    final String url = domain + mediaType + "/" + id + apikey;
     var response = await http.get(url);
-    if (response.statusCode == 200) {
-      return convert.jsonDecode(response.body);
-    } else
-      return null;
+    if (response.statusCode == 200) return convert.jsonDecode(response.body);
+    return null;
+  }
+
+  Future<dynamic> getCredits(String id, String mediaType) async {
+    final String url = domain + mediaType + '/' + id + '/credits' + apikey;
+    var response = await http.get(url);
+    if (response.statusCode == 200) return convert.jsonDecode(response.body);
+    return null;
+  }
+
+  Future<dynamic> getImages(String id, String mediaType) async {
+    final String url = domain + mediaType + '/' + id + '/images' + apikey;
+    var response = await http.get(url);
+    if (response.statusCode == 200) return convert.jsonDecode(response.body);
+    return null;
+  }
+
+  Future<dynamic> getVideos(String id, String mediaType) async {
+    final String url = domain + mediaType + '/' + id + '/videos' + apikey;
+    var response = await http.get(url);
+    if (response.statusCode == 200) return convert.jsonDecode(response.body);
+    return null;
+  }
+
+  Future<dynamic> getSimilar(String id, String mediaType, int page) async {
+    final String url = domain +
+        mediaType +
+        '/' +
+        id +
+        '/similar' +
+        apikey +
+        '&page=' +
+        page.toString();
+    print("url = " + url);
+    var response = await http.get(url);
+    if (response.statusCode == 200) return convert.jsonDecode(response.body);
+    return null;
+  }
+
+  Future<dynamic> getRecommendations(
+      String id, String mediaType, int page) async {
+    final String url = domain +
+        mediaType +
+        '/' +
+        id +
+        '/recommendations' +
+        apikey +
+        '&page=' +
+        page.toString();
+    var response = await http.get(url);
+    if (response.statusCode == 200) return convert.jsonDecode(response.body);
+    return null;
   }
 
   Future<dynamic> getTrending(
       String mediaType, String trendingTime, int page) async {
-    print("getting trending from network");
     if (!mediaTypes.contains(mediaType) ||
         !trendingTimes.contains(trendingTime))
       throw Exception('invalid media type or trending time');
@@ -40,29 +89,19 @@ class Network {
         "&page=" +
         page.toString();
     var response = await http.get(url);
-    if (response.statusCode == 200)
-      return convert.jsonDecode(response.body);
-    else {
-      print(response.statusCode);
-      return null;
-    }
+    if (response.statusCode == 200) return convert.jsonDecode(response.body);
+    return null;
   }
 
   //popularMovies: popularMovies, upcomingMovies: upcomingMovies, nowPlayingMovies: nowPlayingMovies, topRatedMovies: topRatedMovies
   Future<dynamic> getPopular(String mediaType, int page) async {
-    print("getting popular from network");
     if (!mediaTypes.contains(mediaType))
       throw Exception('invalid media type or trending time');
     final String url =
         domain + mediaType + "/popular/" + apikey + "&page=" + page.toString();
-    print(url);
     var response = await http.get(url);
-    if (response.statusCode == 200)
-      return convert.jsonDecode(response.body);
-    else {
-      print(response.statusCode);
-      return null;
-    }
+    if (response.statusCode == 200) return convert.jsonDecode(response.body);
+    return null;
   }
 
   Future<dynamic> getTopRated(String mediaType, int page) async {
@@ -75,12 +114,8 @@ class Network {
         "&page=" +
         page.toString();
     var response = await http.get(url);
-    if (response.statusCode == 200)
-      return convert.jsonDecode(response.body);
-    else {
-      print(response.statusCode);
-      return null;
-    }
+    if (response.statusCode == 200) return convert.jsonDecode(response.body);
+    return null;
   }
 
   Future<dynamic> getNowPlaying(int page) async {
@@ -92,12 +127,8 @@ class Network {
         "&page=" +
         page.toString();
     var response = await http.get(url);
-    if (response.statusCode == 200)
-      return convert.jsonDecode(response.body);
-    else {
-      print(response.statusCode);
-      return null;
-    }
+    if (response.statusCode == 200) return convert.jsonDecode(response.body);
+    return null;
   }
 
   Future<dynamic> getUpcoming(int page) async {
@@ -105,12 +136,8 @@ class Network {
     final String url =
         domain + mediaType + "/upcoming/" + apikey + "&page=" + page.toString();
     var response = await http.get(url);
-    if (response.statusCode == 200)
-      return convert.jsonDecode(response.body);
-    else {
-      print(response.statusCode);
-      return null;
-    }
+    if (response.statusCode == 200) return convert.jsonDecode(response.body);
+    return null;
   }
 
   Future<dynamic> getOnTv(int page) async {
@@ -122,12 +149,8 @@ class Network {
         "&page=" +
         page.toString();
     var response = await http.get(url);
-    if (response.statusCode == 200)
-      return convert.jsonDecode(response.body);
-    else {
-      print(response.statusCode);
-      return null;
-    }
+    if (response.statusCode == 200) return convert.jsonDecode(response.body);
+    return null;
   }
 
   Future<dynamic> getAiringToday(int page) async {
@@ -139,31 +162,7 @@ class Network {
         "&page=" +
         page.toString();
     var response = await http.get(url);
-    if (response.statusCode == 200)
-      return convert.jsonDecode(response.body);
-    else {
-      print(response.statusCode);
-      return null;
-    }
+    if (response.statusCode == 200) return convert.jsonDecode(response.body);
+    return null;
   }
-  // Future<dynamic> getTrendingTvShows(
-  //     String mediaType, String trendingTime, int page) async {
-  //   if (!mediaTypes.contains(mediaType) ||
-  //       !trendingTimes.contains(trendingTime))
-  //     throw Exception('invalid media type or trending time');
-  //   final String url = trending +
-  //       mediaType +
-  //       "/" +
-  //       trendingTime +
-  //       apikey +
-  //       "&page=" +
-  //       page.toString();
-  //   var response = await http.get(url);
-  //   if (response.statusCode == 200)
-  //     return convert.jsonDecode(response.body);
-  //   else {
-  //     print(response.statusCode);
-  //     return null;
-  //   }
-  // }
 }

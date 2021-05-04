@@ -1,25 +1,31 @@
 import 'package:flutter/cupertino.dart';
 
-class Person {
+import 'Media.dart';
+
+class Person extends Media{
   String birthday,
       biography,
       id,
-      profileImg,
+      profileImgUrl,
       placeOfBirth,
       imdbID,
       name,
-      knownFor;
-  Person(
-      {@required this.id,
-      this.name,
-      this.imdbID,
-      this.biography,
-      this.birthday,
-      this.profileImg,
-      this.knownFor,
-      this.placeOfBirth});
-  @override
-  String toString() {
-    return 'person';
+      character,
+      job,
+      knownFor,
+      mediaType;
+Person({
+    @required this.id,
+    this.name,
+    this.imdbID,
+    this.biography,
+    this.birthday,
+    this.profileImgUrl,
+    this.knownFor,
+    this.placeOfBirth,
+    this.character,
+    this.job,
+  }):super(id: id) {
+    super.mediaType = 'person';
   }
 }

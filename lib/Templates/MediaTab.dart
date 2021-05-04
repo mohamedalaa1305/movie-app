@@ -23,6 +23,7 @@ class _MediaTabState extends State<MediaTab> {
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: 5,
+      padding: EdgeInsets.only(top: 16, bottom: 32),
       itemBuilder: (BuildContext context, int idx) {
         return HorizontalSection(
           mediaType: widget.mediaType,

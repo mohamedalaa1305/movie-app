@@ -34,11 +34,23 @@ dependencies:
   extended_image: ^2.0.0
   cached_network_image: ^2.5.1
   provider: ^5.0.0
+  carousel_slider: ^3.0.0
+  flutter_launcher_icons: ^0.8.1
+  readmore: ^2.0.0
+  tuple: ^2.0.0
+  youtube_player_flutter: ^8.0.0
+  auto_size_text: ^2.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  # flutter_launcher_icons: "^0.8.0"
 
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/tmdb5.jpg"
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

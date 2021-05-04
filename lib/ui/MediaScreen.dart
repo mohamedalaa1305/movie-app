@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/Constants.dart';
 import 'package:movie_app/Templates/MediaGrid.dart';
 import 'package:flutter/services.dart';
@@ -21,20 +22,20 @@ class _MediaScreenState extends State<MediaScreen>
   void initState() {
     super.initState();
     tabs = (widget.mediaType == 'movie')
-      ? [
-          Tab(text: 'Trending'),
-          Tab(text: 'Popular'),
-          Tab(text: 'Now Playing'),
-          Tab(text: 'Upcoming'),
-          Tab(text: 'Top Rated'),
-        ]
-      : [
-          Tab(text: 'Trending'),
-          Tab(text: 'Popular'),
-          Tab(text: 'On Tv'),
-          Tab(text: 'Airing Today'),
-          Tab(text: 'Top Rated'),
-        ];
+        ? [
+            Tab(text: 'Trending'),
+            Tab(text: 'Popular'),
+            Tab(text: 'Now Playing'),
+            Tab(text: 'Upcoming'),
+            Tab(text: 'Top Rated'),
+          ]
+        : [
+            Tab(text: 'Trending'),
+            Tab(text: 'Popular'),
+            Tab(text: 'On Tv'),
+            Tab(text: 'Airing Today'),
+            Tab(text: 'Top Rated'),
+          ];
     _controller = TabController(length: 5, vsync: this);
     _controller.addListener(controllerListener);
     _controller.index = widget.tabIndex;
@@ -42,30 +43,52 @@ class _MediaScreenState extends State<MediaScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Kplatte1[1],
-      appBar: AppBar(
-        title: Text( (widget.mediaType == 'movie')? 'Movies' : 'Tv Shows'),
+    return Material(
+      child: Scaffold(
         backgroundColor: Kplatte1[1],
-        brightness: Brightness.dark,
-        foregroundColor: Colors.white,
-        automaticallyImplyLeading: true,
-        bottom: TabBar(
-          controller: _controller,
-          isScrollable: true,
-          tabs: tabs,
-        ),
-      ),
-      body: SafeArea(
-        child: TabBarView(
-          controller: _controller,
-          children: [
-            MediaGrid(mediaType: widget.mediaType, tabIndex: 0),
-            MediaGrid(mediaType: widget.mediaType, tabIndex: 1),
-            MediaGrid(mediaType: widget.mediaType, tabIndex: 2),
-            MediaGrid(mediaType: widget.mediaType, tabIndex: 3),
-            MediaGrid(mediaType: widget.mediaType, tabIndex: 4),
-          ],
+        body: SafeArea(
+          child: DefaultTabController(
+            length: 5,
+            child: NestedScrollView(
+              floatHeaderSlivers: true,
+              headerSliverBuilder: (context, value) {
+                return [
+                  SliverAppBar(
+                    backgroundColor: Kplatte1[1],
+                    floating: true,
+                    pinned: true,
+                    snap: true,
+                    title: Text(
+                      (widget.mediaType == 'movie') ? 'Movies' : 'Tv Shows',
+                      style: GoogleFonts.abel(),
+                    ),
+                    brightness: Brightness.dark,
+                    foregroundColor: Colors.white,
+                    automaticallyImplyLeading: true,
+                    bottom: TabBar(
+                      labelColor: Colors.blue,
+                      unselectedLabelColor: Colors.white,
+                      isScrollable: true,
+                      controller: _controller,
+                      tabs: tabs,
+                      labelStyle: kTabTextStyle,
+                    ),
+                    actions: [],
+                  ),
+                ];
+              },
+              body: TabBarView(
+                controller: _controller,
+                children: [
+                  MediaGrid(mediaType: widget.mediaType, tabIndex: 0),
+                  MediaGrid(mediaType: widget.mediaType, tabIndex: 1),
+                  MediaGrid(mediaType: widget.mediaType, tabIndex: 2),
+                  MediaGrid(mediaType: widget.mediaType, tabIndex: 3),
+                  MediaGrid(mediaType: widget.mediaType, tabIndex: 4),
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/DataController.dart';
+import 'package:movie_app/Controllers/DataController.dart';
 import 'package:movie_app/Models/Media.dart';
 import 'package:provider/provider.dart';
 
+import 'MediaGridPosterContainer.dart';
 import 'PosterContainer.dart';
 
 class MediaGrid extends StatefulWidget {
@@ -26,35 +27,37 @@ class _MediaGridState extends State<MediaGrid> {
 
   @override
   Widget build(BuildContext context) {
-    final dc = Provider.of<DataController>(context);
-    return Scrollbar(
-      thickness: 2,
-      child: GridView.count(
-        controller: _controller,
-        crossAxisCount: 3,
-        childAspectRatio: 0.7,
-        children: List.generate(
-          dc.getList(widget.mediaType, widget.tabIndex).length,
-          (idx) => PosterConatainer(
-            id: dc.getList(widget.mediaType, widget.tabIndex)[idx].id,
-            mediaType:
-                dc.getList(widget.mediaType, widget.tabIndex)[idx].mediaType,
-            posterUrl:
-                dc.getList(widget.mediaType, widget.tabIndex)[idx].posterurl,
-          ),
+    final dc = context.watch<DataController>();
+    if (dc.getList(widget.mediaType, widget.tabIndex).isEmpty) {
+      dc.loadNext(widget.mediaType, widget.tabIndex);
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+    return GridView.count(
+      primary: false,
+      // shrinkWrap: true,
+      controller: _controller,
+      crossAxisCount: 3,
+      mainAxisSpacing: 2,
+      crossAxisSpacing: 8,
+      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+      childAspectRatio: 0.53,
+      children: List.generate(
+        dc.getList(widget.mediaType, widget.tabIndex).length,
+        (idx) => MediaGridPosterConatainer(
+          width: (MediaQuery.of(context).size.width - 32) * 0.33,
+          media: dc.getList(widget.mediaType, widget.tabIndex)[idx],
         ),
       ),
     );
   }
 
   void controllerListener() {
-    if (_controller.position.atEdge && _controller.position.pixels != 0) {
-      print('scrolling at end');
-      final dc = Provider.of<DataController>(context, listen: false);
-      print('initialization done');
-      for (int i = 0; i < 2; i++)
-        dc.loadNext(widget.mediaType, widget.tabIndex);
-      print('done ok');
+    if (_controller.position.maxScrollExtent - _controller.position.pixels <=
+        400) {
+      final dc = context.read<DataController>();
+      dc.loadNext(widget.mediaType, widget.tabIndex);
     }
   }
 }
