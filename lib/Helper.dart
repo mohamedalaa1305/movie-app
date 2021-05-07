@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:movie_app/Models/MediaImage.dart';
 import 'package:movie_app/Models/MediaVideo.dart';
 import 'package:movie_app/Models/Person..dart';
 import 'package:movie_app/Models/Season.dart';
+import 'Models/Episode.dart';
 import 'Models/Media.dart';
 import 'Models/Movie.dart';
 import 'Models/TvShow.dart';
@@ -47,7 +49,7 @@ List<MediaImage> fetchImages(var response, String type) {
 
 List<Person> fetchCredits(var response, String type) {
   List<Person> ans = [];
-  
+
   List<dynamic> mp = response[type];
   for (int i = 0; i < mp.length; i++) {
     ans.add(
@@ -72,12 +74,45 @@ List<String> fetchGenres(var response) {
   return genres;
 }
 
+Season toSeason(var response, String tvid) {
+  return new Season(
+    id: response['id'].toString(),
+    airdate: response['air_date'].toString(),
+    name: response['name'].toString(),
+    overview: response['overview'].toString(),
+    posterurl: Network.imgbaseurlw342 + response['poster_path'].toString(),
+    number: response['season_number'].toString(),
+    tvid: tvid,
+    episodecount: (response['episodes']).length.toString(),
+    episodes: fetchEpisodes(response),
+  );
+}
+
+List<Episode> fetchEpisodes(var response) {
+  List<dynamic> mp = response['episodes'];
+  List<Episode> ans = [];
+  for (int i = 0; i < mp.length; i++) {
+    ans.add(new Episode(
+      airdate: mp[i]['air_date'].toString(),
+      id: mp[i]['id'].toString(),
+      name: mp[i]['name'].toString(),
+      overview: mp[i]['overview'].toString(),
+      posterurl: mp[i]['still_path'].toString(),
+      voteavg: mp[i]['vote_average'].toString(),
+      votecount: mp[i]['vote_count'].toString(),
+      number: mp[i]['episode_number'].toString(),
+    ));
+  }
+  return ans;
+}
+
 List<Season> fetchSeasons(var response) {
   List<dynamic> mp = response['seasons'];
   List<Season> ans = [];
   for (int i = 0; i < mp.length; i++)
     ans.add(
       new Season(
+        tvid: response['id'].toString(),
         airdate: mp[i]['air_date'].toString(),
         episodecount: mp[i]['episode_count'].toString(),
         id: mp[i]['id'].toString(),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:movie_app/Network.dart';
 
 const Color c0 = Color(0xff03071e);
 const Color c1 = Color(0xff370617);
@@ -59,3 +60,4 @@ String vimeo = 'https://vimeo.com/';
 const Widget loading = Center(
   child: CircularProgressIndicator(),
 );
+final Network api = Network();

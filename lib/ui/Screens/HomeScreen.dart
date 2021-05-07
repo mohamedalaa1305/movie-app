@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/Constants.dart';
-import 'package:movie_app/Controllers/DataController.dart';
-import 'package:movie_app/Controllers/MediaController.dart';
-import 'package:movie_app/Controllers/PersonController.dart';
-import 'package:movie_app/Controllers/TvShowController.dart';
 import 'package:movie_app/Templates/MediaTab.dart';
 import 'package:movie_app/ui/Menus/AppDrawer.dart';
-import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   Home({Key key}) : super(key: key);

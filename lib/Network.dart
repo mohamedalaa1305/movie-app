@@ -165,4 +165,24 @@ class Network {
     if (response.statusCode == 200) return convert.jsonDecode(response.body);
     return null;
   }
+
+  Future<dynamic> getSeason(String tvid, String number) async {
+    final String url = domain + 'tv/' + tvid + '/season/' + number + apikey;
+    var response = await http.get(url);
+    if (response.statusCode == 200) return convert.jsonDecode(response.body);
+    return null;
+  }
+  Future<dynamic> getSeasonImages(String tvid, String number) async {
+    final String url = '$domain$tvid/season/$number/images$apikey';
+    var response = await http.get(url);
+    if (response.statusCode == 200) return convert.jsonDecode(response.body);
+    return null;
+  }
+  Future<dynamic> getSeasonVideos(String tvid, String number) async {
+    final String url = '$domain$tvid/season/$number/videos$apikey';
+    var response = await http.get(url);
+    if (response.statusCode == 200) return convert.jsonDecode(response.body);
+    return null;
+  }
+  
 }

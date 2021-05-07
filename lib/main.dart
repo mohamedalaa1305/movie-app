@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/Controllers/DataController.dart';
 import 'package:movie_app/ui/Screens/SplashScreen.dart';
 import 'package:provider/provider.dart';
-import 'Controllers/MediaController.dart';
 
 void main() {
   runApp(MyApp());
