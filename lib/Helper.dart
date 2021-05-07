@@ -46,8 +46,9 @@ List<MediaImage> fetchImages(var response, String type) {
 }
 
 List<Person> fetchCredits(var response, String type) {
-  List<dynamic> mp = response[type];
   List<Person> ans = [];
+  
+  List<dynamic> mp = response[type];
   for (int i = 0; i < mp.length; i++) {
     ans.add(
       new Person(

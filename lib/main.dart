@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/Controllers/DataController.dart';
-import 'package:movie_app/ui/Splash.dart';
-import 'package:movie_app/ui/TestingScreen.dart';
+import 'package:movie_app/ui/Screens/SplashScreen.dart';
 import 'package:provider/provider.dart';
-
 import 'Controllers/MediaController.dart';
 
 void main() {
@@ -28,7 +26,7 @@ class MyApp extends StatelessWidget {
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Movie Box',
-        home: Splash(),
+        home: SplashScreen(),
         theme: ThemeData(
           // textTheme: GoogleFonts.robotoSlabTextTheme(Theme.of(context).textTheme),
           textTheme: GoogleFonts.abelTextTheme(Theme.of(context).textTheme),

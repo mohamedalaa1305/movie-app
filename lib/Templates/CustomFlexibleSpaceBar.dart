@@ -18,7 +18,8 @@ class CustomFlexibleSpaceBar extends StatelessWidget {
       line3,
       rating,
       voteCount,
-      trailerUrl;
+      trailerUrl,
+      mediaType;
   const CustomFlexibleSpaceBar({
     Key key,
     @required this.parentcontext,
@@ -32,6 +33,7 @@ class CustomFlexibleSpaceBar extends StatelessWidget {
     @required this.line2,
     @required this.line3,
     @required this.trailerUrl,
+    this.mediaType,
   }) : super(key: key);
 
   @override
@@ -129,11 +131,23 @@ class CustomFlexibleSpaceBar extends StatelessWidget {
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
                 ),
-                Text(
-                  line1,
-                  style: GoogleFonts.abel().copyWith(color: Colors.white),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
+                Row(
+                  children: [
+                    Icon(
+                      Icons.list_rounded,
+                      color: Colors.white,
+                      size: 12,
+                    ),
+                    SizedBox(
+                      width: 4,
+                    ),
+                    Text(
+                      line1,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: GoogleFonts.abel().copyWith(color: Colors.white),
+                    ),
+                  ],
                 ),
                 Row(
                   children: [
@@ -151,9 +165,23 @@ class CustomFlexibleSpaceBar extends StatelessWidget {
                     ),
                   ],
                 ),
-                Text(
-                  line3,
-                  style: GoogleFonts.abel().copyWith(color: Colors.white),
+                Row(
+                  children: [
+                    Icon(
+                      (mediaType == 'movie')
+                          ? Icons.access_time
+                          : Icons.tv_rounded,
+                      color: Colors.white,
+                      size: 13,
+                    ),
+                    SizedBox(
+                      width: 4,
+                    ),
+                    Text(
+                      line3,
+                      style: GoogleFonts.abel().copyWith(color: Colors.white),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -171,13 +199,17 @@ class CustomFlexibleSpaceBar extends StatelessWidget {
               ),
               padding: EdgeInsets.only(right: 8),
               child: IconTheme(
-                data: IconThemeData(color: Colors.white, size: 32),
+                data: IconThemeData(color: Colors.white, size: 24),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.play_arrow_rounded),
+                    Icon(
+                      (trailerUrl != 'null')
+                          ? Icons.play_arrow_rounded
+                          : Icons.error,
+                    ),
                     AutoSizeText(
-                      'Play Trailer',
+                      (trailerUrl != 'null') ? 'Play Trailer' : 'No Trailer',
                       style: GoogleFonts.abel().copyWith(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -201,7 +233,8 @@ class CustomFlexibleSpaceBar extends StatelessWidget {
               child: InkWell(
                 borderRadius: BorderRadius.circular(5),
                 onTap: () {
-                  navigatePush(context, VideoPlayerScreen(url: trailerUrl));
+                  if (trailerUrl != 'null')
+                    navigatePush(context, VideoPlayerScreen(url: trailerUrl));
                 },
               ),
             ),

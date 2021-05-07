@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/Constants.dart';
 import 'package:movie_app/Helper.dart';
-import 'package:movie_app/ui/Home.dart';
-import 'package:movie_app/ui/MediaScreen.dart';
+import 'package:movie_app/ui/Screens/MediaScreen.dart';
 
 class SectionHeader extends StatelessWidget {
   final String title, mediaType;

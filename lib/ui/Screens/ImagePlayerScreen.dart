@@ -6,16 +6,16 @@ import 'package:flutter/services.dart';
 import 'package:movie_app/Constants.dart';
 import 'package:movie_app/Models/MediaImage.dart';
 
-class ImagePlayer extends StatefulWidget {
+class ImagePlayerScreen extends StatefulWidget {
   final List<MediaImage> images;
   final bool landscape;
-  const ImagePlayer({Key key, this.images, this.landscape}) : super(key: key);
+  const ImagePlayerScreen({Key key, this.images, this.landscape}) : super(key: key);
 
   @override
-  _ImagePlayerState createState() => _ImagePlayerState();
+  _ImagePlayerScreenState createState() => _ImagePlayerScreenState();
 }
 
-class _ImagePlayerState extends State<ImagePlayer> {
+class _ImagePlayerScreenState extends State<ImagePlayerScreen> {
   int idx = 1;
   @override
   void initState() {

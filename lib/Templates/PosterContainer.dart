@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/Constants.dart';
+import 'package:movie_app/Helper.dart';
 import 'package:movie_app/Models/Media.dart';
 import 'package:movie_app/ui/MediaDetails.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:movie_app/ui/Screens/MovieScreen.dart';
+import 'package:movie_app/ui/Screens/TvShowScreen.dart';
 
 class PosterConatainer extends StatelessWidget {
   final Media media;
@@ -92,13 +95,22 @@ class PosterConatainer extends StatelessWidget {
                     child: InkWell(
                       borderRadius: BorderRadius.all(Radius.circular(5)),
                       onTap: () {
-                        Get.to(
-                          () => MediaDetails(
-                            id: media.id,
-                            title: media.title,
-                            mediaType: media.mediaType,
-                          ),
+                        navigatePush(
+                          context,
+                          (media.mediaType == 'movie')
+                              ? MovieScreen(id: media.id, title: media.title)
+                              : TvShowScreen(
+                                  id: media.id,
+                                  title: media.title,
+                                ),
                         );
+                        // Get.to(
+                        //   () => MediaDetails(
+                        //     id: media.id,
+                        //     title: media.title,
+                        //     mediaType: media.mediaType,
+                        //   ),
+                        // );
                       },
                     ),
                   ),

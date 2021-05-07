@@ -10,7 +10,7 @@ class PersonCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.22,
+      width: MediaQuery.of(context).size.width * 0.21,
       child: Column(
         children: [
           SizedBox(

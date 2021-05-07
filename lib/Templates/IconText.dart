@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 class IconText extends StatelessWidget {
   final String txt;
   final IconData icon;
@@ -19,7 +20,7 @@ class IconText extends StatelessWidget {
             txt,
             style: GoogleFonts.robotoSlab().copyWith(
               color: Colors.white,
-              fontSize: 13,
+              fontSize: 11,
             ),
           ),
           SizedBox(

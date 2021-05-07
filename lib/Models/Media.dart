@@ -37,7 +37,7 @@ class Media {
   List<MediaVideo> videos;
   List<Media> recommendations, similar;
   Media({
-    @required this.id,
+    this.id,
     this.posterurl,
     this.status,
     this.title,
@@ -61,18 +61,18 @@ class Media {
     similarpageidx = 1;
     similarpages = -1;
     recommendationspages = -1;
-    similar = [];
-    recommendations = [];
+    // similar = [];
+    // recommendations = [];
     totalsimilar = -1;
     totalrecommendations = -1;
-    cast = [];
-    crew = [];
-    posters = [];
-    backdrops = [];
-    videos = [];
+    // cast = [];
+    // crew = [];
+    // posters = [];
+    // backdrops = [];
+    // videos = [];
     downloadedCredits = false;
-    downloadedVideos = false;
-    trailer = new MediaVideo(id: '-1', key: '-1', site: 'youtube');
+    // downloadedVideos = false;
+    // trailer = new MediaVideo(id: '-1', key: '-1', site: 'youtube');
   }
   Future<void> getCredits() async {
     var response = await api.getCredits(id, mediaType);
@@ -89,6 +89,7 @@ class Media {
         await api.getRecommendations(id, mediaType, recommendationspageidx++);
     this.recommendationspages = response['total_pages'];
     this.totalrecommendations = response['total_results'];
+    this.recommendations = [];
     this
         .recommendations
         .addAll(fetchSimilarOrRecommendations(response, mediaType));
@@ -99,6 +100,7 @@ class Media {
     var response = await api.getSimilar(id, mediaType, similarpageidx++);
     this.similarpages = response['total_pages'];
     this.totalsimilar = response['total_results'];
+    this.similar = [];
     this.similar.addAll(fetchSimilarOrRecommendations(response, mediaType));
   }
 

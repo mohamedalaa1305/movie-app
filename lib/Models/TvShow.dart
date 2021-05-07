@@ -12,7 +12,7 @@ class TvShow extends Media {
   String numberofepisodes, numberofseasons;
   List<Season> seasons;
   TvShow({
-    @required String id,
+    String id,
     String posterurl,
     String title,
     String overview,

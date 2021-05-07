@@ -4,7 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/Constants.dart';
 import 'package:movie_app/Helper.dart';
 import 'package:movie_app/Models/Media.dart';
-import 'package:movie_app/ui/MediaDetails.dart';
+import 'package:movie_app/ui/Screens/MovieScreen.dart';
+import 'package:movie_app/ui/Screens/TvShowScreen.dart';
 
 class MediaCard extends StatelessWidget {
   final Media media;
@@ -42,11 +43,12 @@ class MediaCard extends StatelessWidget {
                         onTap: () {
                           navigatePush(
                             context,
-                            MediaDetails(
-                              id: media.id,
-                              title: media.title,
-                              mediaType: media.mediaType,
-                            ),
+                            (media.mediaType == 'movie')
+                                ? MovieScreen(id: media.id, title: media.title)
+                                : TvShowScreen(
+                                    id: media.id,
+                                    title: media.title,
+                                  ),
                           );
                         },
                       ),

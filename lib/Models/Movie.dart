@@ -1,18 +1,16 @@
 import 'package:flutter/cupertino.dart';
-import 'package:movie_app/Helper.dart';
 import 'package:movie_app/Models/Media.dart';
 import 'package:movie_app/Models/Person..dart';
 import 'package:movie_app/Network.dart';
-
 import 'MediaImage.dart';
 import 'MediaVideo.dart';
 
 Network api = new Network();
 
-class Movie extends Media {
+class Movie extends Media{
   final String revenue, budget;
   Movie({
-    @required String id,
+    String id,
     this.revenue,
     this.budget,
     String posterurl,

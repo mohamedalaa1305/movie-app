@@ -1,8 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/Templates/VideoPlayerWidget.dart';
-
-import '../Constants.dart';
+import '../../Constants.dart';
 
 class TestingScreen extends StatelessWidget {
   const TestingScreen({Key key}) : super(key: key);
