@@ -128,7 +128,7 @@ class CustomFlexibleSpaceBar extends StatelessWidget {
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
                   ),
-                  maxLines: 3,
+                  maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
                 Row(
@@ -141,11 +141,14 @@ class CustomFlexibleSpaceBar extends StatelessWidget {
                     SizedBox(
                       width: 4,
                     ),
-                    Text(
-                      line1,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: GoogleFonts.abel().copyWith(color: Colors.white),
+                    Expanded(
+                      child: Text(
+                        line1,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.abel().copyWith(color: Colors.white),
+                        softWrap: false,
+                      ),
                     ),
                   ],
                 ),
@@ -170,7 +173,7 @@ class CustomFlexibleSpaceBar extends StatelessWidget {
                     Icon(
                       (mediaType == 'movie')
                           ? Icons.access_time
-                          : Icons.tv_rounded,
+                          : Icons.live_tv_rounded,
                       color: Colors.white,
                       size: 13,
                     ),

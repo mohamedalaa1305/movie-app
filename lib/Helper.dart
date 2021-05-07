@@ -79,10 +79,12 @@ List<Season> fetchSeasons(var response) {
     ans.add(
       new Season(
         airdate: mp[i]['air_date'].toString(),
-        name: mp[i]['name'].toString(),
         episodecount: mp[i]['episode_count'].toString(),
+        id: mp[i]['id'].toString(),
+        name: mp[i]['name'].toString(),
         overview: mp[i]['overview'].toString(),
-        posterurl: Network.imgbaseurlw342 + mp[i]['poster_path'].toString(),
+        posterurl: Network.imgbaseurlw185 + mp[i]['poster_path'].toString(),
+        number: mp[i]['season_number'].toString(),
       ),
     );
   return ans;

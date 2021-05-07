@@ -1,6 +1,8 @@
 class Season {
-  String name, overview, airdate, episodecount, posterurl;
+  String id, number, name, overview, airdate, episodecount, posterurl, tvid;
   Season({
+    this.id,
+    this.number,
     this.name,
     this.overview,
     this.airdate,

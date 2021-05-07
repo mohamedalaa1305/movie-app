@@ -4,13 +4,13 @@ import 'package:movie_app/Models/TvShow.dart';
 import '../Helper.dart';
 
 class TvShowController with ChangeNotifier {
-
   TvShow show;
 
   void downloadShow(String id) async {
     show = new TvShow(id: id);
     var response = await api.getDetails(show.id, 'tv');
     show = toMedia(response, 'tv');
+    await downloadVideos();
     notifyListeners();
   }
 
@@ -34,9 +34,8 @@ class TvShowController with ChangeNotifier {
     notifyListeners();
   }
 
-  void downloadVideos() async {
+  Future<void> downloadVideos() async {
     await show.getVideos();
     notifyListeners();
   }
-  
 }
