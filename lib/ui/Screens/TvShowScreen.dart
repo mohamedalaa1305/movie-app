@@ -8,6 +8,7 @@ import 'package:movie_app/Models/Person..dart';
 import 'package:movie_app/Models/Season.dart';
 import 'package:movie_app/Templates/CustomFlexibleSpaceBar.dart';
 import 'package:movie_app/Templates/Images.dart';
+import 'package:movie_app/Templates/InfoRow.dart';
 import 'package:movie_app/Templates/Loading.dart';
 import 'package:movie_app/Templates/MediaSection.dart';
 import 'package:movie_app/Templates/NothingToShowContainer.dart';
@@ -74,11 +75,26 @@ class TvShowScreen extends StatelessWidget {
                 posterUrl: data.show?.posterurl ?? 'null',
                 rating: data.show?.voteavg ?? 'null',
                 voteCount: data.show?.votecount ?? 'null',
-                line1: splitByDots(data.show?.genres) ?? '',
-                line2: data.show?.releasedate ?? 'unknown',
-                line3: data.show?.status ?? 'null',
                 trailerUrl: data.show.trailer?.key ?? 'null',
                 mediaType: 'tv',
+                info1: InfoRow(
+                  icon: Icons.list_rounded,
+                  iconsize: 12,
+                  txt: splitByDots(data.show?.genres) ?? '',
+                  mxlines: 2,
+                ),
+                info2: InfoRow(
+                  icon: Icons.calendar_today_rounded,
+                  iconsize: 12,
+                  txt: data.show?.releasedate ?? 'unknown',
+                  mxlines: 1,
+                ),
+                info3: InfoRow(
+                  txt: data.show?.status ?? 'null',
+                  icon: Icons.live_tv_rounded,
+                  iconsize: 12,
+                  mxlines: 1,
+                ),
               ),
             ),
           ),
@@ -89,7 +105,7 @@ class TvShowScreen extends StatelessWidget {
           OverviewContainer(overview: data.show.overview),
           SectionHead(
             title: 'Seasons',
-            child: SeasonsSection(seasons: data.show.seasons),
+            child: SeasonsSection(seasons: data.show.seasons, show: data.show),
           ),
           SectionHead(
             title: 'Cast',

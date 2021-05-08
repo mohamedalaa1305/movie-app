@@ -2,7 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/Constants.dart';
+import 'package:movie_app/Helper.dart';
 import 'package:movie_app/Models/Person..dart';
+import 'package:movie_app/ui/Screens/PersonScreen.dart';
 
 class PersonCard extends StatelessWidget {
   final Person person;
@@ -36,7 +38,9 @@ class PersonCard extends StatelessWidget {
                     color: Colors.transparent,
                     child: InkWell(
                       borderRadius: BorderRadius.circular(72),
-                      onTap: () {},
+                      onTap: () {
+                        navigatePush(context, PersonScreen(id: person.id));
+                      },
                     ),
                   ),
                 ),

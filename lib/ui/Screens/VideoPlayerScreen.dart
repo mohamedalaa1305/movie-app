@@ -28,6 +28,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
         autoPlay: true,
         mute: false,
         hideControls: false,
+        disableDragSeek: true,
       ),
     );
 
@@ -41,10 +42,10 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
   @override
   void deactivate() {
-    SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-    ]);
+    // SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
+    // SystemChrome.setPreferredOrientations([
+    //   DeviceOrientation.portraitUp,
+    // ]);
     super.deactivate();
   }
 

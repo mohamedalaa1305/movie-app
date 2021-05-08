@@ -4,7 +4,12 @@ import 'package:movie_app/Templates/SeasonCard.dart';
 
 class SeasonsSection extends StatelessWidget {
   final List<Season> seasons;
-  const SeasonsSection({Key key, @required this.seasons}) : super(key: key);
+  final show;
+  const SeasonsSection({
+    Key key,
+    @required this.seasons,
+    this.show,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +21,7 @@ class SeasonsSection extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         itemBuilder: (context, index) => Container(
           margin: EdgeInsets.only(right: 8),
-          child: SeasonCard(season: seasons[index]),
+          child: SeasonCard(season: seasons[index], show: show),
         ),
       ),
     );

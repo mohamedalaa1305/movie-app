@@ -1,8 +1,6 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:movie_app/Constants.dart';
-import 'package:movie_app/Helper.dart';
 import 'package:movie_app/ui/Screens/VideoPlayerScreen.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -108,14 +106,19 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
 
   fullscreen() {
     toggle();
-    navigatePush(
+    Navigator.push(
       context,
-      VideoPlayerScreen(
-        url: widget.url,
-        seek: controller.value.position,
-        hascontroller: true,
-        yc: controller,
+      MaterialPageRoute(
+        builder: (context) => VideoPlayerScreen(
+          url: widget.url,
+          seek: controller.value.position,
+        ),
       ),
-    );
+    ).whenComplete(() {
+      SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
+      SystemChrome.setPreferredOrientations([
+        DeviceOrientation.portraitUp,
+      ]);
+    });
   }
 }

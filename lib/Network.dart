@@ -1,5 +1,4 @@
 import 'dart:convert' as convert;
-import 'dart:io';
 import 'package:http/http.dart' as http;
 
 class Network {
@@ -172,17 +171,33 @@ class Network {
     if (response.statusCode == 200) return convert.jsonDecode(response.body);
     return null;
   }
+
   Future<dynamic> getSeasonImages(String tvid, String number) async {
-    final String url = '$domain$tvid/season/$number/images$apikey';
+    final String url = '$domain' + 'tv/' + '$tvid/season/$number/images$apikey';
     var response = await http.get(url);
     if (response.statusCode == 200) return convert.jsonDecode(response.body);
     return null;
   }
+
+  Future<dynamic> getPersonImages(String id) async {
+    final String url = '$domain' + 'person/' + '$id/images$apikey';
+    var response = await http.get(url);
+    if (response.statusCode == 200) return convert.jsonDecode(response.body);
+    return null;
+  }
+
+  Future<dynamic> getPersonCredits(String id) async {
+    final String url = '$domain' + 'person/' + '$id/combined_credits$apikey';
+    var response = await http.get(url);
+    if (response.statusCode == 200) return convert.jsonDecode(response.body);
+    return null;
+  }
+
   Future<dynamic> getSeasonVideos(String tvid, String number) async {
-    final String url = '$domain$tvid/season/$number/videos$apikey';
+    final String url = '$domain' + 'tv/' + '$tvid/season/$number/videos$apikey';
+    // print('url = ' + url);
     var response = await http.get(url);
     if (response.statusCode == 200) return convert.jsonDecode(response.body);
     return null;
   }
-  
 }

@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,7 +7,11 @@ import 'package:movie_app/Models/MediaImage.dart';
 class ImagePlayerScreen extends StatefulWidget {
   final List<MediaImage> images;
   final bool landscape;
-  const ImagePlayerScreen({Key key, this.images, this.landscape}) : super(key: key);
+  const ImagePlayerScreen({
+    Key key,
+    @required this.images,
+    @required this.landscape,
+  }) : super(key: key);
 
   @override
   _ImagePlayerScreenState createState() => _ImagePlayerScreenState();
@@ -21,6 +23,7 @@ class _ImagePlayerScreenState extends State<ImagePlayerScreen> {
   void initState() {
     super.initState();
     if (widget.landscape) {
+      SystemChrome.setEnabledSystemUIOverlays([]);
       Future.delayed(Duration(milliseconds: 250), () {
         SystemChrome.setPreferredOrientations([
           DeviceOrientation.landscapeRight,
@@ -32,6 +35,7 @@ class _ImagePlayerScreenState extends State<ImagePlayerScreen> {
 
   @override
   void deactivate() {
+    SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
     if (widget.landscape) {
       SystemChrome.setPreferredOrientations([
         DeviceOrientation.portraitUp,

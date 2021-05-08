@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/Constants.dart';
 import 'package:movie_app/Models/Person..dart';
 import 'PersonCard.dart';
 

@@ -8,6 +8,7 @@ import 'package:movie_app/Models/MediaVideo.dart';
 import 'package:movie_app/Models/Person..dart';
 import 'package:movie_app/Templates/Images.dart';
 import 'package:movie_app/Templates/CustomFlexibleSpaceBar.dart';
+import 'package:movie_app/Templates/InfoRow.dart';
 import 'package:movie_app/Templates/Loading.dart';
 import 'package:movie_app/Templates/MediaSection.dart';
 import 'package:movie_app/Templates/SectionHead.dart';
@@ -68,15 +69,44 @@ class MovieScreen extends StatelessWidget {
                 parentcontext: context,
                 constraints: constraints,
                 title: data.movie.title,
-                backdropUrl: data.movie?.backdropurl ?? 'null',
-                posterUrl: data.movie?.posterurl ?? 'null',
-                rating: data.movie?.voteavg ?? 'null',
-                voteCount: data.movie?.votecount ?? 'null',
-                line1: splitByDots(data.movie?.genres) ?? '',
-                line2: data.movie?.releasedate ?? 'unknown',
-                line3: toHoursandMinutes(data.movie?.runtime) ?? 'null',
-                trailerUrl: data.movie.trailer?.key ?? 'null',
+                backdropUrl: (data.movie.backdropurl != null)
+                    ? data.movie.backdropurl
+                    : 'null',
+                posterUrl: (data.movie.posterurl != null)
+                    ? data.movie.posterurl
+                    : 'null',
+                rating:
+                    (data.movie.voteavg != null) ? data.movie.voteavg : '0.0',
+                voteCount:
+                    (data.movie.votecount != null) ? data.movie.votecount : '0',
+                trailerUrl: (data.movie.trailer != null)
+                    ? data.movie.trailer.key
+                    : 'null',
                 mediaType: 'movie',
+                info1: InfoRow(
+                  icon: Icons.list_rounded,
+                  iconsize: 12,
+                  txt: (data.movie.genres != null)
+                      ? splitByDots(data.movie?.genres)
+                      : 'Unkown',
+                  mxlines: 2,
+                ),
+                info2: InfoRow(
+                  icon: Icons.calendar_today_rounded,
+                  iconsize: 12,
+                  txt: (data.movie.releasedate != null)
+                      ? data.movie.releasedate
+                      : 'unknown',
+                  mxlines: 1,
+                ),
+                info3: InfoRow(
+                  txt: (data.movie.runtime != null)
+                      ? toHoursandMinutes(data.movie.runtime)
+                      : 'Unkown',
+                  icon: Icons.access_time,
+                  iconsize: 13,
+                  mxlines: 1,
+                ),
               ),
             ),
           ),

@@ -56,6 +56,7 @@ class Media {
     this.backdropurl,
     this.recommendations,
     this.similar,
+    this.mediaType,
   }) {
     recommendationspageidx = 1;
     similarpageidx = 1;

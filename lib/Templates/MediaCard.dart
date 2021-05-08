@@ -9,7 +9,8 @@ import 'package:movie_app/ui/Screens/TvShowScreen.dart';
 
 class MediaCard extends StatelessWidget {
   final Media media;
-  const MediaCard({@required this.media});
+  final String info;
+  const MediaCard({@required this.media, this.info});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,6 +33,45 @@ class MediaCard extends StatelessWidget {
                         errorWidget: (_, __, ___) =>
                             Image.asset(KPortraitPlaceHolder),
                         fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    left: 4,
+                    bottom: 4,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 3),
+                      decoration: BoxDecoration(
+                        color: Kplatte1[1],
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: Text(
+                        (media.releasedate != null &&
+                                media.releasedate.length > 3)
+                            ? media.releasedate.substring(0, 4)
+                            : 'Unknown',
+                        style: GoogleFonts.abel().copyWith(
+                          color: Colors.white,
+                          fontSize: 10,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    right: 4,
+                    top: 4,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 3),
+                      decoration: BoxDecoration(
+                        color: Kplatte1[1],
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: Text(
+                        double.parse(media.voteavg).toStringAsPrecision(2),
+                        style: GoogleFonts.abel().copyWith(
+                          color: Colors.white,
+                          fontSize: 10,
+                        ),
                       ),
                     ),
                   ),
@@ -72,6 +112,23 @@ class MediaCard extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
+            (info != null)
+                ? Container(
+                    width: MediaQuery.of(context).size.width * 0.22,
+                    // alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(left: 2),
+                    child: Text(
+                      info,
+                      style: GoogleFonts.abel().copyWith(
+                        color: Colors.white54,
+                        fontSize: 11,
+                      ),
+                      // textAlign: TextAlign.center,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  )
+                : Container(),
           ],
         ),
       ),

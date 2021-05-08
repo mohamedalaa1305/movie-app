@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/Constants.dart';
 import 'package:movie_app/Helper.dart';
@@ -13,13 +14,11 @@ class CustomFlexibleSpaceBar extends StatelessWidget {
   final String title,
       backdropUrl,
       posterUrl,
-      line1,
-      line2,
-      line3,
       rating,
       voteCount,
       trailerUrl,
       mediaType;
+  final Widget info1, info2, info3;
   const CustomFlexibleSpaceBar({
     Key key,
     @required this.parentcontext,
@@ -29,9 +28,9 @@ class CustomFlexibleSpaceBar extends StatelessWidget {
     @required this.posterUrl,
     @required this.rating,
     @required this.voteCount,
-    @required this.line1,
-    @required this.line2,
-    @required this.line3,
+    this.info1,
+    this.info2,
+    this.info3,
     @required this.trailerUrl,
     this.mediaType,
   }) : super(key: key);
@@ -131,61 +130,9 @@ class CustomFlexibleSpaceBar extends StatelessWidget {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.list_rounded,
-                      color: Colors.white,
-                      size: 12,
-                    ),
-                    SizedBox(
-                      width: 4,
-                    ),
-                    Expanded(
-                      child: Text(
-                        line1,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: GoogleFonts.abel().copyWith(color: Colors.white),
-                        softWrap: false,
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.calendar_today,
-                      color: Colors.white,
-                      size: 12,
-                    ),
-                    SizedBox(
-                      width: 4,
-                    ),
-                    Text(
-                      line2,
-                      style: GoogleFonts.abel().copyWith(color: Colors.white),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Icon(
-                      (mediaType == 'movie')
-                          ? Icons.access_time
-                          : Icons.live_tv_rounded,
-                      color: Colors.white,
-                      size: 13,
-                    ),
-                    SizedBox(
-                      width: 4,
-                    ),
-                    Text(
-                      line3,
-                      style: GoogleFonts.abel().copyWith(color: Colors.white),
-                    ),
-                  ],
-                ),
+                (info1 != null) ? info1 : Container(),
+                (info2 != null) ? info2 : Container(),
+                (info3 != null) ? info3 : Container(),
               ],
             ),
           ),
@@ -236,8 +183,23 @@ class CustomFlexibleSpaceBar extends StatelessWidget {
               child: InkWell(
                 borderRadius: BorderRadius.circular(5),
                 onTap: () {
-                  if (trailerUrl != 'null')
-                    navigatePush(context, VideoPlayerScreen(url: trailerUrl));
+                  if (trailerUrl != 'null') {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => VideoPlayerScreen(
+                          url: trailerUrl,
+                        ),
+                      ),
+                    ).whenComplete(() {
+                      SystemChrome.setEnabledSystemUIOverlays(
+                          SystemUiOverlay.values);
+                      SystemChrome.setPreferredOrientations([
+                        DeviceOrientation.portraitUp,
+                      ]);
+                    });
+                    // navigatePush(context, VideoPlayerScreen(url: trailerUrl));
+                  }
                 },
               ),
             ),

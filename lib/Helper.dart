@@ -5,6 +5,7 @@ import 'package:movie_app/Models/MediaImage.dart';
 import 'package:movie_app/Models/MediaVideo.dart';
 import 'package:movie_app/Models/Person..dart';
 import 'package:movie_app/Models/Season.dart';
+import 'package:tuple/tuple.dart';
 import 'Models/Episode.dart';
 import 'Models/Media.dart';
 import 'Models/Movie.dart';
@@ -20,6 +21,7 @@ List<Media> fetchSimilarOrRecommendations(var response, String mediaType) {
 
 List<MediaVideo> fetchVideos(var response) {
   List<MediaVideo> ans = [];
+  if (response == null) return ans;
   List<dynamic> mp = response['results'];
   for (int i = 0; i < mp.length; i++)
     ans.add(
@@ -34,9 +36,65 @@ List<MediaVideo> fetchVideos(var response) {
   return ans;
 }
 
+Person toPerson(var response) {
+  return new Person(
+    id: response['id'].toString(),
+    biography: response['biography'].toString(),
+    birthday: response['birthday'].toString(),
+    imdbID: response['imdb_id'].toString(),
+    knownFor: response['known_for_department'].toString(),
+    placeOfBirth: response['place_of_birth'].toString(),
+    profileImgUrl:
+        Network.imgbaseurloriginal + response['profile_path'].toString(),
+    name: response['name'].toString(),
+  );
+}
+
+List<Tuple2<Media, String>> fetchPersonCredits(var response) {
+  List<Tuple2<Media, String>> ans = [];
+  List<dynamic> cast = response['cast'];
+  List<dynamic> crew = response['crew'];
+  for (var credit in cast) {
+    Media media = new Media(
+      posterurl: Network.imgbaseurlw342 + credit['poster_path'].toString(),
+      title: (credit['media_type'].toString() == 'movie')
+          ? credit['title'].toString()
+          : credit['name'].toString(),
+      id: credit['id'].toString(),
+      voteavg: credit['vote_average'].toString(),
+      votecount: credit['vote_count'].toString(),
+      releasedate: (credit['media_type'].toString() == 'movie')
+          ? credit['release_date'].toString()
+          : credit['first_air_date'].toString(),
+      mediaType: credit['media_type'].toString(),
+    );
+    String role = credit['character'].toString();
+    ans.add(Tuple2(media, role));
+  }
+  for (var credit in crew) {
+    Media media = new Media(
+      posterurl: Network.imgbaseurlw342 + credit['poster_path'].toString(),
+      title: (credit['media_type'].toString() == 'movie')
+          ? credit['title'].toString()
+          : credit['name'].toString(),
+      id: credit['id'].toString(),
+      voteavg: credit['vote_average'].toString(),
+      votecount: credit['vote_count'].toString(),
+      releasedate: (credit['media_type'].toString() == 'movie')
+          ? credit['release_date'].toString()
+          : credit['first_air_date'].toString(),
+      mediaType: credit['media_type'].toString(),
+    );
+    String role = credit['job'].toString();
+    ans.add(Tuple2(media, role));
+  }
+  return ans;
+}
+
 List<MediaImage> fetchImages(var response, String type) {
-  List<dynamic> mp = response[type];
   List<MediaImage> ans = [];
+  if (response == null) return ans;
+  List<dynamic> mp = response[type];
   for (int i = 0; i < mp.length; i++)
     ans.add(new MediaImage(
       path: Network.imgbaseurlw780 + mp[i]['file_path'].toString(),
@@ -74,7 +132,7 @@ List<String> fetchGenres(var response) {
   return genres;
 }
 
-Season toSeason(var response, String tvid) {
+Season toSeason(var response) {
   return new Season(
     id: response['id'].toString(),
     airdate: response['air_date'].toString(),
@@ -82,22 +140,22 @@ Season toSeason(var response, String tvid) {
     overview: response['overview'].toString(),
     posterurl: Network.imgbaseurlw342 + response['poster_path'].toString(),
     number: response['season_number'].toString(),
-    tvid: tvid,
     episodecount: (response['episodes']).length.toString(),
     episodes: fetchEpisodes(response),
   );
 }
 
 List<Episode> fetchEpisodes(var response) {
-  List<dynamic> mp = response['episodes'];
   List<Episode> ans = [];
+  if (response == null) return ans;
+  List<dynamic> mp = response['episodes'];
   for (int i = 0; i < mp.length; i++) {
     ans.add(new Episode(
       airdate: mp[i]['air_date'].toString(),
       id: mp[i]['id'].toString(),
       name: mp[i]['name'].toString(),
       overview: mp[i]['overview'].toString(),
-      posterurl: mp[i]['still_path'].toString(),
+      posterurl: Network.imgbaseurlw185 + mp[i]['still_path'].toString(),
       voteavg: mp[i]['vote_average'].toString(),
       votecount: mp[i]['vote_count'].toString(),
       number: mp[i]['episode_number'].toString(),
@@ -107,11 +165,13 @@ List<Episode> fetchEpisodes(var response) {
 }
 
 List<Season> fetchSeasons(var response) {
-  List<dynamic> mp = response['seasons'];
   List<Season> ans = [];
+  if (response == null) return ans;
+  List<dynamic> mp = response['seasons'];
   for (int i = 0; i < mp.length; i++)
     ans.add(
       new Season(
+        tvtitle: response['name'],
         tvid: response['id'].toString(),
         airdate: mp[i]['air_date'].toString(),
         episodecount: mp[i]['episode_count'].toString(),
@@ -195,6 +255,7 @@ Media toMediaBasic(var response, String mediaType) {
 }
 
 String toHoursandMinutes(String len) {
+  if (len == null || len == 'null') return "null";
   int minutes;
   String ans = '';
   try {

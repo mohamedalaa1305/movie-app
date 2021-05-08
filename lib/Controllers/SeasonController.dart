@@ -5,10 +5,14 @@ import '../Helper.dart';
 
 class SeasonController with ChangeNotifier {
   Season season;
-  void downloadSeason(String tvid, String number) async {
+  void downloadSeason(String tvid, String number, String tvtitle) async {
     season = new Season(tvid: tvid, number: number);
     var response = await api.getSeason(tvid, number);
-    season = toSeason(response, tvid);
+    season = toSeason(response);
+    season.tvid = tvid;
+    season.tvtitle = tvtitle;
+    print("#episodes = " + season.episodecount);
+    print("Episode count = " + season.episodes.length.toString());
     await downloadVideos();
     notifyListeners();
   }
