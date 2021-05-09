@@ -54,7 +54,7 @@ class PosterConatainer extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        media.voteavg,
+                        double.parse(media.voteavg).toStringAsFixed(1),
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white,

@@ -54,7 +54,7 @@ class MediaGridPosterConatainer extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        double.parse(media.voteavg).toPrecision(1).toString(),
+                        double.parse(media.voteavg).toStringAsFixed(1),
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: GoogleFonts.robotoSlab().fontFamily,

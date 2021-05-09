@@ -52,7 +52,7 @@ TextStyle kSectionTitleTextStyle = GoogleFonts.abel().copyWith(
   color: Colors.white,
   fontWeight: FontWeight.bold,
 );
-const String KLandscapePlaceHolder = 'assets/images/landscape2.jpg';
+const String KLandscapePlaceHolder = 'assets/images/landscape23.jpg';
 const String KPortraitPlaceHolder = 'assets/images/def3.png';
 const String KProfilePlaceHolder = 'assets/images/profileplaceholder.png';
 String youtube = 'https://www.youtube.com/watch?v=';

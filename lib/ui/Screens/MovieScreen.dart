@@ -87,7 +87,7 @@ class MovieScreen extends StatelessWidget {
                   icon: Icons.list_rounded,
                   iconsize: 12,
                   txt: (data.movie.genres != null)
-                      ? splitByDots(data.movie?.genres)
+                      ? splitByDots(data.movie.genres)
                       : 'Unkown',
                   mxlines: 2,
                 ),

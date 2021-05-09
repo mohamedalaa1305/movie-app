@@ -33,7 +33,7 @@ class _MediaScreenState extends State<MediaScreen>
             Tab(text: 'Trending'),
             Tab(text: 'Popular'),
             Tab(text: 'On Tv'),
-            Tab(text: 'Airing Today'),
+            Tab(text: 'Netflix'),
             Tab(text: 'Top Rated'),
           ];
     _controller = TabController(length: 5, vsync: this);

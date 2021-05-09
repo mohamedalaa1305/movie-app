@@ -98,7 +98,9 @@ class CustomFlexibleSpaceBar extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 IconText(txt: voteCount, icon: Icons.people_alt),
-                IconText(txt: rating, icon: Icons.star_rate_rounded),
+                IconText(
+                    txt: double.parse(rating).toStringAsFixed(1),
+                    icon: Icons.star_rate_rounded),
               ],
             ),
           ),

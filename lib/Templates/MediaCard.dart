@@ -67,7 +67,7 @@ class MediaCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(4),
                       ),
                       child: Text(
-                        double.parse(media.voteavg).toStringAsPrecision(2),
+                        double.parse(media.voteavg).toStringAsFixed(1),
                         style: GoogleFonts.abel().copyWith(
                           color: Colors.white,
                           fontSize: 10,

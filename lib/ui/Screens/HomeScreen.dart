@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/Constants.dart';
+import 'package:movie_app/Helper.dart';
 import 'package:movie_app/Templates/MediaTab.dart';
 import 'package:movie_app/ui/Menus/AppDrawer.dart';
+import 'package:movie_app/ui/Screens/SearchScreen.dart';
 
 class Home extends StatefulWidget {
   Home({Key key}) : super(key: key);
@@ -62,7 +64,18 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                     labelStyle: txtstyle,
                     tabs: tabs,
                   ),
-                  actions: [],
+                  actions: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8),
+                      child: IconButton(
+                        onPressed: () => navigatePush(context, SearchScreen()),
+                        icon: Icon(
+                          Icons.search_rounded,
+                          size: 25,
+                        ),
+                      ),
+                    ),
+                  ],
                   title: Text(
                     'Movie Box',
                     style: GoogleFonts.abel(),

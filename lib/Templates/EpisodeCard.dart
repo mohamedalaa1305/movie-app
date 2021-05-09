@@ -73,7 +73,7 @@ class EpisodeCard extends StatelessWidget {
                           icon: Icons.people_alt_rounded,
                         ),
                         IconText(
-                          txt: episode.voteavg,
+                          txt: double.parse(episode.voteavg).toStringAsFixed(1),
                           icon: Icons.star_rate_rounded,
                         ),
                       ],

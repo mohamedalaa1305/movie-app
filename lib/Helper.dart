@@ -255,7 +255,7 @@ Media toMediaBasic(var response, String mediaType) {
 }
 
 String toHoursandMinutes(String len) {
-  if (len == null || len == 'null') return "null";
+  if (len == null || len == 'null') return "Unknown";
   int minutes;
   String ans = '';
   try {
@@ -270,7 +270,12 @@ String toHoursandMinutes(String len) {
   return ans;
 }
 
+String getCurrentDate() {
+  return DateTime.now().toString().substring(0, 10);
+}
+
 String splitByDots(List<String> list) {
+  if (list == null || list.isEmpty) return 'Unkown';
   String ans = '';
   ans += list.first;
   for (int i = 1; i < list.length; i++) ans += ' . ' + list[i];

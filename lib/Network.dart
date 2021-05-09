@@ -1,5 +1,6 @@
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
+import 'package:movie_app/Helper.dart';
 
 class Network {
   static const String apikey = '?api_key=6df06c7ba764015fcbf426ac8857a052';
@@ -96,8 +97,13 @@ class Network {
   Future<dynamic> getPopular(String mediaType, int page) async {
     if (!mediaTypes.contains(mediaType))
       throw Exception('invalid media type or trending time');
-    final String url =
-        domain + mediaType + "/popular/" + apikey + "&page=" + page.toString();
+    // final String url =
+    //     domain + mediaType + "/popular/" + apikey + "&page=" + page.toString();
+    String count = (mediaType == 'movie') ? '7500' : '500';
+    final url = '$domain' +
+        'discover/$mediaType$apikey' +
+        '&sort_by=popularity.desc&vote_count.gte=$count' +
+        '&page=${page.toString()}';
     var response = await http.get(url);
     if (response.statusCode == 200) return convert.jsonDecode(response.body);
     return null;
@@ -106,12 +112,16 @@ class Network {
   Future<dynamic> getTopRated(String mediaType, int page) async {
     if (!mediaTypes.contains(mediaType))
       throw Exception('invalid media type or trending time');
-    final String url = domain +
-        mediaType +
-        "/top_rated/" +
-        apikey +
-        "&page=" +
-        page.toString();
+    // final String url = domain +
+    //     mediaType +
+    //     "/top_rated/" +
+    //     apikey +
+    //     "&page=" +
+    //     page.toString();
+    String count = (mediaType == 'movie') ? '5000' : '1000';
+    String ex = '&without_genres=16';
+    final String url = '$domain' +
+        'discover/$mediaType$apikey&sort_by=vote_average.desc&page=${page.toString()}&vote_count.gte=$count$ex';
     var response = await http.get(url);
     if (response.statusCode == 200) return convert.jsonDecode(response.body);
     return null;
@@ -131,9 +141,13 @@ class Network {
   }
 
   Future<dynamic> getUpcoming(int page) async {
-    String mediaType = 'movie';
-    final String url =
-        domain + mediaType + "/upcoming/" + apikey + "&page=" + page.toString();
+    // String mediaType = 'movie';
+    // final String url =
+    //     domain + mediaType + "/upcoming/" + apikey + "&page=" + page.toString();
+    final url = '$domain' +
+        'discover/movie$apikey' +
+        '&sort_by=primary_release_date.asc' +
+        '&page=${page.toString()}&primary_release_date.gte=${getCurrentDate()}';
     var response = await http.get(url);
     if (response.statusCode == 200) return convert.jsonDecode(response.body);
     return null;
@@ -153,13 +167,16 @@ class Network {
   }
 
   Future<dynamic> getAiringToday(int page) async {
-    String mediaType = 'tv';
-    final String url = domain +
-        mediaType +
-        "/airing_today/" +
-        apikey +
-        "&page=" +
-        page.toString();
+    //? getting netflix shows instead
+    // String mediaType = 'tv';
+    // final String url = domain +
+    //     mediaType +
+    //     "/airing_today/" +
+    //     apikey +
+    //     "&page=" +
+    //     page.toString();
+    final String url = '$domain' +
+        'discover/tv$apikey&sort_by=popularity.desc&with_networks=213&page=${page.toString()}';
     var response = await http.get(url);
     if (response.statusCode == 200) return convert.jsonDecode(response.body);
     return null;

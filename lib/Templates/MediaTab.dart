@@ -15,7 +15,7 @@ class _MediaTabState extends State<MediaTab> {
   void initState() {
     title = (widget.mediaType == 'movie')
         ? ['Trending', 'Popular', 'Now Playing', 'Upcoming', 'Top Rated']
-        : ['Trending', 'Popular', 'On Tv', 'Airing Today', 'Top Rated'];
+        : ['Trending', 'Popular', 'On Tv', 'Netflix', 'Top Rated'];
     super.initState();
   }
 
