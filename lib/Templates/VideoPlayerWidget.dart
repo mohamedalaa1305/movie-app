@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:movie_app/Constants.dart';
 import 'package:movie_app/ui/Screens/VideoPlayerScreen.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class VideoPlayerWidget extends StatefulWidget {
@@ -42,12 +43,19 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
     return Stack(
       children: [
         Positioned.fill(
-          child: YoutubePlayer(
-            controller: controller,
-            showVideoProgressIndicator: true,
-            onReady: () => controller.addListener(() {
-              setState(() {});
-            }),
+          child: VisibilityDetector(
+            key: Key("key"),
+            onVisibilityChanged: (info) {
+              if (info.visibleFraction < 0.8 && controller.value.isPlaying)
+                toggle();
+            },
+            child: YoutubePlayer(
+              controller: controller,
+              showVideoProgressIndicator: true,
+              onReady: () => controller.addListener(() {
+                setState(() {});
+              }),
+            ),
           ),
         ),
         Positioned(

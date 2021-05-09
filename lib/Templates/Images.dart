@@ -57,6 +57,7 @@ class Images extends StatelessWidget {
                     child: InkWell(
                       borderRadius: BorderRadius.circular(5),
                       onTap: () {
+                        if (posters == null || posters.isEmpty) return;
                         navigatePush(
                           context,
                           ImagePlayerScreen(
@@ -110,6 +111,7 @@ class Images extends StatelessWidget {
                     child: InkWell(
                       borderRadius: BorderRadius.circular(10),
                       onTap: () {
+                        if (backdrops == null || backdrops.isEmpty) return;
                         navigatePush(
                           context,
                           ImagePlayerScreen(

@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/Constants.dart';
 import 'package:movie_app/Models/MediaImage.dart';
+import 'package:movie_app/Templates/IconText.dart';
 
 class ImagePlayerScreen extends StatefulWidget {
   final List<MediaImage> images;
@@ -55,20 +57,47 @@ class _ImagePlayerScreenState extends State<ImagePlayerScreen> {
         PageController(initialPage: 0, keepPage: true);
     return Scaffold(
       backgroundColor: Kplatte1[1],
-      appBar: AppBar(
-        backgroundColor: Kplatte1[1],
-        brightness: Brightness.dark,
-        title: Text(idx.toString() + ' / ' + widget.images.length.toString()),
-        toolbarHeight: 50,
-      ),
-      body: PageView(
-        onPageChanged: (value) {
-          setState(() {
-            idx = value + 1;
-          });
-        },
-        controller: controller,
-        children: buildPages(),
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Positioned.fill(
+            child: PageView(
+              onPageChanged: (value) {
+                setState(() {
+                  idx = value + 1;
+                });
+              },
+              controller: controller,
+              children: buildPages(),
+            ),
+          ),
+          Positioned(
+            top: 16,
+            left: 16,
+            child: Container(
+              child: Row(
+                children: [
+                  IconButton(
+                    onPressed: () => Navigator.pop(context),
+                    icon: Icon(
+                      Icons.arrow_back,
+                      size: 20,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Text(
+                    idx.toString() + ' / ' + widget.images.length.toString(),
+                    style: GoogleFonts.abel().copyWith(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

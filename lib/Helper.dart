@@ -185,10 +185,21 @@ List<Season> fetchSeasons(var response) {
   return ans;
 }
 
+bool equal(List<Media> l1, List<Media> l2) {
+  print("prev len = " + l1.length.toString());
+  print('next len = ' + l2.length.toString());
+  if (l1.length != l2.length) return false;
+  for (int i = 0; i < l1.length; i++) {
+    if (l1[i].id != l2[i].id) return false;
+  }
+  print("next = prev");
+  return true;
+}
+
 List<Media> toMediaList(var response, String mediaType) {
   List<Media> list = [];
-  for (int i = 0; i < 20; i++)
-    list.add(toMediaBasic(response['results'][i], mediaType));
+  List<dynamic> mp = response['results'];
+  for (int i = 0; i < mp.length; i++) list.add(toMediaBasic(mp[i], mediaType));
   return list;
 }
 

@@ -79,7 +79,9 @@ class SeasonScreen extends StatelessWidget {
                   mxlines: 2,
                 ),
                 info3: InfoRow(
-                  txt: data.season?.airdate?.substring(0, 4) ?? 'unknown',
+                  txt: (data.season.airdate.length > 3)
+                      ? data.season.airdate.substring(0, 4)
+                      : 'unknown',
                   icon: Icons.calendar_today_rounded,
                   iconsize: 12,
                   mxlines: 1,

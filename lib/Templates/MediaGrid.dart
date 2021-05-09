@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/Controllers/DataController.dart';
-import 'package:movie_app/Models/Media.dart';
 import 'package:provider/provider.dart';
-
 import 'MediaGridPosterContainer.dart';
-import 'PosterContainer.dart';
 
 class MediaGrid extends StatefulWidget {
   final String mediaType;
   final int tabIndex;
-  MediaGrid({Key key, @required this.mediaType, @required this.tabIndex})
+  MediaGrid({Key key,  this.mediaType, this.tabIndex})
       : super(key: key);
 
   @override

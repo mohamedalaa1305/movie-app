@@ -6,6 +6,8 @@ import 'package:movie_app/Controllers/DataController.dart';
 import 'package:movie_app/ui/Screens/SplashScreen.dart';
 import 'package:provider/provider.dart';
 
+import 'Controllers/SearchController.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -15,11 +17,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        // ChangeNotifierProvider<MediaController>(
-        //   create: (_) => MediaController(),
-        // ),
         ChangeNotifierProvider<DataController>(
           create: (_) => DataController(),
+        ),
+        ChangeNotifierProvider<SearchController>(
+          create: (_) => SearchController(),
         ),
       ],
       child: GetMaterialApp(

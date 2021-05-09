@@ -182,6 +182,15 @@ class Network {
     return null;
   }
 
+  Future<dynamic> search(String mediaType, String query, int page) async {
+    final String url = domain +
+        'search/$mediaType$apikey&query=$query&page=${page.toString()}';
+    print("url = " + url);
+    var response = await http.get(url);
+    if (response.statusCode == 200) return convert.jsonDecode(response.body);
+    return null;
+  }
+
   Future<dynamic> getSeason(String tvid, String number) async {
     final String url = domain + 'tv/' + tvid + '/season/' + number + apikey;
     var response = await http.get(url);
