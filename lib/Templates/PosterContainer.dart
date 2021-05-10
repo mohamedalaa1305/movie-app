@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/Constants.dart';
 import 'package:movie_app/Helper.dart';
 import 'package:movie_app/Models/Media.dart';
-import 'package:movie_app/ui/MediaDetails.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:movie_app/ui/Screens/MovieScreen.dart';
 import 'package:movie_app/ui/Screens/TvShowScreen.dart';
@@ -49,7 +48,7 @@ class PosterConatainer extends StatelessWidget {
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 2, vertical: 1),
                     decoration: BoxDecoration(
-                      color: Kplatte1[1],
+                      color: appTheme[background],
                       borderRadius: BorderRadius.circular(5),
                     ),
                     child: Center(
@@ -57,7 +56,7 @@ class PosterConatainer extends StatelessWidget {
                         double.parse(media.voteavg).toStringAsFixed(1),
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          color: Colors.white,
+                          color: appTheme[txt],
                           fontSize: 11,
                           fontFamily: GoogleFonts.robotoSlab().fontFamily,
                         ),
@@ -71,7 +70,7 @@ class PosterConatainer extends StatelessWidget {
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 2, vertical: 1),
                     decoration: BoxDecoration(
-                      color: Kplatte1[1],
+                      color: appTheme[background],
                       borderRadius: BorderRadius.circular(5),
                     ),
                     child: Center(
@@ -81,7 +80,7 @@ class PosterConatainer extends StatelessWidget {
                             : media.releasedate.substring(0, 4),
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          color: Colors.white,
+                          color: appTheme[txt],
                           fontSize: 11,
                           fontFamily: GoogleFonts.robotoSlab().fontFamily,
                         ),
@@ -124,7 +123,7 @@ class PosterConatainer extends StatelessWidget {
               child: AutoSizeText(
                 media.title,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: appTheme[txt],
                   // fontSize: 12,
                 ),
                 overflow: TextOverflow.ellipsis,

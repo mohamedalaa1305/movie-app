@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/Constants.dart';
-import 'package:movie_app/Helper.dart';
 import 'package:movie_app/Templates/IconText.dart';
 import 'package:movie_app/ui/Screens/VideoPlayerScreen.dart';
 
@@ -45,7 +44,7 @@ class CustomFlexibleSpaceBar extends StatelessWidget {
           ? Text(
               title,
               style: GoogleFonts.abel().copyWith(
-                color: Colors.white,
+                color: appTheme[txt],
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 1,
@@ -97,9 +96,9 @@ class CustomFlexibleSpaceBar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                IconText(txt: voteCount, icon: Icons.people_alt),
+                IconText(text: voteCount, icon: Icons.people_alt),
                 IconText(
-                    txt: double.parse(rating).toStringAsFixed(1),
+                    text: double.parse(rating).toStringAsFixed(1),
                     icon: Icons.star_rate_rounded),
               ],
             ),
@@ -110,10 +109,7 @@ class CustomFlexibleSpaceBar extends StatelessWidget {
                 22,
             width: MediaQuery.of(context).size.width * 0.265,
             left: 16,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 2),
-              child: Image.asset('assets/images/tmdblogo.png'),
-            ),
+            child: Image.asset(logo),
           ),
           Positioned(
             top: MediaQuery.of(context).size.width / 1.7 + 12,
@@ -125,7 +121,7 @@ class CustomFlexibleSpaceBar extends StatelessWidget {
                 Text(
                   title,
                   style: GoogleFonts.abel().copyWith(
-                    color: Colors.white,
+                    color: appTheme[txt],
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
                   ),
@@ -147,11 +143,11 @@ class CustomFlexibleSpaceBar extends StatelessWidget {
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
-                color: Colors.cyan[600],
+                color: appTheme[button],
               ),
               padding: EdgeInsets.only(right: 8),
               child: IconTheme(
-                data: IconThemeData(color: Colors.white, size: 24),
+                data: IconThemeData(color: appTheme[txt], size: 24),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -163,7 +159,7 @@ class CustomFlexibleSpaceBar extends StatelessWidget {
                     AutoSizeText(
                       (trailerUrl != 'null') ? 'Play Trailer' : 'No Trailer',
                       style: GoogleFonts.abel().copyWith(
-                        color: Colors.white,
+                        color: appTheme[txt],
                         fontWeight: FontWeight.bold,
                       ),
                       maxLines: 1,

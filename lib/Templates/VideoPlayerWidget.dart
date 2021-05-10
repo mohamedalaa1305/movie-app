@@ -62,13 +62,13 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
           bottom: 4,
           left: 8,
           child: Material(
-            color: Kplatte1[1],
+            color: appTheme[background],
             type: MaterialType.button,
             child: InkWell(
               onTap: () => toggle(),
               child: Icon(
                 icon,
-                color: Colors.white,
+                color: appTheme[txt],
                 size: 20,
                 semanticLabel: tooltip,
               ),
@@ -80,13 +80,13 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
           right: 8,
           child: Material(
             type: MaterialType.button,
-            color: Kplatte1[1],
+            color: appTheme[background],
             child: InkWell(
               onTap: () => fullscreen(),
               child: Icon(
                 Icons.fullscreen_rounded,
                 size: 20,
-                color: Colors.white,
+                color: appTheme[txt],
                 semanticLabel: 'full screen',
               ),
             ),

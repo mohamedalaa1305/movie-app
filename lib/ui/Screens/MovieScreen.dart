@@ -32,7 +32,7 @@ class MovieScreen extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => MovieController(),
       child: Scaffold(
-        backgroundColor: Kplatte1[1],
+        backgroundColor: appTheme[background],
         body: SafeArea(
           child: Consumer<MovieController>(
             builder: (_, data, __) {
@@ -54,14 +54,20 @@ class MovieScreen extends StatelessWidget {
       headerSliverBuilder: (context, value) {
         return [
           SliverAppBar(
-            backgroundColor: Kplatte1[1],
+            backgroundColor: appTheme[background],
             pinned: true,
+            actionsIconTheme: IconThemeData(color: appTheme[txt]),
+            iconTheme: IconThemeData(color: appTheme[txt]),
             actions: [
               IconButton(
                 onPressed: () => navigatePushOnly(context, Home()),
-                icon: Icon(Icons.home),
+                icon: Icon(
+                  Icons.home,
+                  color: appTheme[txt],
+                ),
               ),
             ],
+            foregroundColor: appTheme[txt],
             brightness: Brightness.dark,
             expandedHeight: MediaQuery.of(context).size.height * 0.5,
             flexibleSpace: LayoutBuilder(
@@ -86,7 +92,7 @@ class MovieScreen extends StatelessWidget {
                 info1: InfoRow(
                   icon: Icons.list_rounded,
                   iconsize: 12,
-                  txt: (data.movie.genres != null)
+                  info: (data.movie.genres != null)
                       ? splitByDots(data.movie.genres)
                       : 'Unkown',
                   mxlines: 2,
@@ -94,13 +100,13 @@ class MovieScreen extends StatelessWidget {
                 info2: InfoRow(
                   icon: Icons.calendar_today_rounded,
                   iconsize: 12,
-                  txt: (data.movie.releasedate != null)
+                  info: (data.movie.releasedate != null)
                       ? data.movie.releasedate
                       : 'unknown',
                   mxlines: 1,
                 ),
                 info3: InfoRow(
-                  txt: (data.movie.runtime != null)
+                  info: (data.movie.runtime != null)
                       ? toHoursandMinutes(data.movie.runtime)
                       : 'Unkown',
                   icon: Icons.access_time,

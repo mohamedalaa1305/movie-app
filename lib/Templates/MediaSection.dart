@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/Models/Media.dart';
 import 'package:movie_app/Templates/MediaCard.dart';
-import '../Constants.dart';
 
 class MediaSection extends StatelessWidget {
   final List<Media> media;

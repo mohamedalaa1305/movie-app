@@ -58,7 +58,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Kplatte1[1],
+      backgroundColor: appTheme[background],
       body: SafeArea(
         child: YoutubePlayer(
           controller: controller,

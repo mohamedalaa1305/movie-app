@@ -42,7 +42,7 @@ class MediaCard extends StatelessWidget {
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 3),
                       decoration: BoxDecoration(
-                        color: Kplatte1[1],
+                        color: appTheme[background],
                         borderRadius: BorderRadius.circular(4),
                       ),
                       child: Text(
@@ -51,7 +51,7 @@ class MediaCard extends StatelessWidget {
                             ? media.releasedate.substring(0, 4)
                             : 'Unknown',
                         style: GoogleFonts.abel().copyWith(
-                          color: Colors.white,
+                          color: appTheme[txt],
                           fontSize: 10,
                         ),
                       ),
@@ -63,13 +63,13 @@ class MediaCard extends StatelessWidget {
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 3),
                       decoration: BoxDecoration(
-                        color: Kplatte1[1],
+                        color: appTheme[background],
                         borderRadius: BorderRadius.circular(4),
                       ),
                       child: Text(
                         double.parse(media.voteavg).toStringAsFixed(1),
                         style: GoogleFonts.abel().copyWith(
-                          color: Colors.white,
+                          color: appTheme[txt],
                           fontSize: 10,
                         ),
                       ),
@@ -104,7 +104,7 @@ class MediaCard extends StatelessWidget {
               child: Text(
                 media.title,
                 style: GoogleFonts.abel().copyWith(
-                  color: Colors.white,
+                  color: appTheme[txt],
                   fontSize: 12,
                 ),
                 // textAlign: TextAlign.center,
@@ -120,7 +120,7 @@ class MediaCard extends StatelessWidget {
                     child: Text(
                       info,
                       style: GoogleFonts.abel().copyWith(
-                        color: Colors.white54,
+                        color: appTheme[subText],
                         fontSize: 11,
                       ),
                       // textAlign: TextAlign.center,

@@ -45,7 +45,7 @@ class _MediaScreenState extends State<MediaScreen>
   Widget build(BuildContext context) {
     return Material(
       child: Scaffold(
-        backgroundColor: Kplatte1[1],
+        backgroundColor: appTheme[background],
         body: SafeArea(
           child: DefaultTabController(
             length: 5,
@@ -54,7 +54,7 @@ class _MediaScreenState extends State<MediaScreen>
               headerSliverBuilder: (context, value) {
                 return [
                   SliverAppBar(
-                    backgroundColor: Kplatte1[1],
+                    backgroundColor: appTheme[background],
                     floating: true,
                     pinned: true,
                     snap: true,
@@ -63,11 +63,11 @@ class _MediaScreenState extends State<MediaScreen>
                       style: GoogleFonts.abel(),
                     ),
                     brightness: Brightness.dark,
-                    foregroundColor: Colors.white,
+                    foregroundColor: appTheme[txt],
                     automaticallyImplyLeading: true,
                     bottom: TabBar(
-                      labelColor: Colors.blue,
-                      unselectedLabelColor: Colors.white,
+                      labelColor: appTheme[label],
+                      unselectedLabelColor: appTheme[txt],
                       isScrollable: true,
                       controller: _controller,
                       tabs: tabs,

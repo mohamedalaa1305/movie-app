@@ -29,7 +29,7 @@ class SectionHeader extends StatelessWidget {
             Container(
               margin: EdgeInsets.only(left: 10),
               padding: EdgeInsets.only(left: 8, right: 8),
-              color: Kplatte1[0],
+              color: appTheme[background],
               child: Center(
                 child: Text(
                   title,
@@ -38,7 +38,7 @@ class SectionHeader extends StatelessWidget {
                     fontSize: 16,
                     letterSpacing: 2,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    color: appTheme[txt],
                   ),
                 ),
               ),
@@ -54,7 +54,7 @@ class SectionHeader extends StatelessWidget {
                     tabIndex: tabIndex,
                   ),
                 ),
-                color: Colors.white54,
+                color: appTheme[subText],
                 icon: Icon(Icons.arrow_forward),
                 iconSize: 20,
               ),

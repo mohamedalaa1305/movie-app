@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readmore/readmore.dart';
+
+import '../Constants.dart';
 class OverviewContainer extends StatelessWidget {
   final overview;
   const OverviewContainer({
@@ -19,15 +21,15 @@ class OverviewContainer extends StatelessWidget {
         trimCollapsedText: 'more',
         trimExpandedText: 'less',
         moreStyle: GoogleFonts.abel().copyWith(
-          color: Colors.cyan,
+          color: appTheme[readMore],
           fontSize: 13,
         ),
         lessStyle: GoogleFonts.abel().copyWith(
-          color: Colors.cyan,
+          color: appTheme[readMore],
           fontSize: 13,
         ),
         style: GoogleFonts.abel().copyWith(
-          color: Colors.white,
+          color: appTheme[txt],
           fontSize: 14,
         ),
       ),

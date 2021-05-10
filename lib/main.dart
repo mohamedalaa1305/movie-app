@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/Controllers/DataController.dart';
+import 'package:movie_app/Controllers/ThemeController.dart';
 import 'package:movie_app/ui/Screens/SplashScreen.dart';
 import 'package:provider/provider.dart';
-
 import 'Controllers/SearchController.dart';
 
 void main() {
@@ -22,6 +22,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<SearchController>(
           create: (_) => SearchController(),
+        ),
+        ChangeNotifierProvider<ThemeController>(
+          create: (_) => ThemeController(),
         ),
       ],
       child: GetMaterialApp(

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../Constants.dart';
+
 class InfoRow extends StatelessWidget {
-  final txt, mxlines, icon;
+  final info, mxlines, icon;
   final double iconsize;
   const InfoRow({
     Key key,
     this.icon,
-    this.txt,
+    this.info,
     this.iconsize,
     this.mxlines,
   }) : super(key: key);
@@ -18,7 +20,7 @@ class InfoRow extends StatelessWidget {
       children: [
         Icon(
           icon,
-          color: Colors.white,
+          color: appTheme[txt],
           size: iconsize,
         ),
         SizedBox(
@@ -26,10 +28,12 @@ class InfoRow extends StatelessWidget {
         ),
         Expanded(
           child: Text(
-            txt,
+            info,
             maxLines: mxlines,
             overflow: TextOverflow.ellipsis,
-            style: GoogleFonts.abel().copyWith(color: Colors.white),
+            style: GoogleFonts.abel().copyWith(
+              color: appTheme[txt],
+            ),
           ),
         ),
       ],

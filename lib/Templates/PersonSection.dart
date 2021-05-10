@@ -8,7 +8,7 @@ class PersonSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.width * 0.38,
+      height: MediaQuery.of(context).size.width * 0.4,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),

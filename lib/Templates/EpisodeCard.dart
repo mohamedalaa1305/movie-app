@@ -30,7 +30,7 @@ class EpisodeCard extends StatelessWidget {
                         topLeft: Radius.circular(4),
                         topRight: Radius.circular(4),
                       ),
-                      color: Colors.black26,
+                      color: appTheme[fill],
                     ),
                     child: Text(
                       episode.number + '. ' + episode.name,
@@ -63,17 +63,18 @@ class EpisodeCard extends StatelessWidget {
                         bottomLeft: Radius.circular(5),
                         bottomRight: Radius.circular(5),
                       ),
-                      color: Colors.black26,
+                      color: appTheme[fill],
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconText(
-                          txt: episode.votecount,
+                          text: episode.votecount,
                           icon: Icons.people_alt_rounded,
                         ),
                         IconText(
-                          txt: double.parse(episode.voteavg).toStringAsFixed(1),
+                          text:
+                              double.parse(episode.voteavg).toStringAsFixed(1),
                           icon: Icons.star_rate_rounded,
                         ),
                       ],
@@ -89,7 +90,7 @@ class EpisodeCard extends StatelessWidget {
               padding: EdgeInsets.all(8),
               width: double.infinity,
               decoration: BoxDecoration(
-                color: Kplatte1[1],
+                color: appTheme[background],
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -99,12 +100,12 @@ class EpisodeCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        padding: EdgeInsets.only(bottom: 8),
+                        padding: EdgeInsets.only(bottom: 4),
                         width: MediaQuery.of(context).size.width * 0.3,
                         child: Text(
                           episode.number + '. ' + episode.name,
                           style: GoogleFonts.abel().copyWith(
-                            color: Colors.white,
+                            color: appTheme[txt],
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
                           ),
@@ -115,7 +116,7 @@ class EpisodeCard extends StatelessWidget {
                       Text(
                         episode.airdate,
                         style: GoogleFonts.abel().copyWith(
-                          color: Colors.white,
+                          color: appTheme[txt],
                           fontSize: 12,
                           // fontWeight: FontWeight.bold,
                         ),
@@ -127,7 +128,7 @@ class EpisodeCard extends StatelessWidget {
                     child: Text(
                       episode.overview,
                       style: GoogleFonts.abel().copyWith(
-                        color: Colors.white70,
+                        color: appTheme[subText],
                         fontSize: 12,
                       ),
                       maxLines: (episode.name.length > 20) ? 5 : 6,

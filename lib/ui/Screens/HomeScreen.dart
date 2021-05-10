@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/Constants.dart';
+import 'package:movie_app/Controllers/ThemeController.dart';
 import 'package:movie_app/Helper.dart';
 import 'package:movie_app/Templates/MediaTab.dart';
 import 'package:movie_app/ui/Menus/AppDrawer.dart';
 import 'package:movie_app/ui/Screens/SearchScreen.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   Home({Key key}) : super(key: key);
@@ -42,9 +44,10 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final tc = context.watch<ThemeController>();
     return Scaffold(
-      backgroundColor: Kplatte1[1],
-      drawer: AppDrawer(),
+      backgroundColor: appTheme[background],
+      drawer: AppDrawer(state: tc.state, idx: 0,),
       body: SafeArea(
         child: DefaultTabController(
           length: 2,
@@ -53,17 +56,20 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             headerSliverBuilder: (context, value) {
               return [
                 SliverAppBar(
-                  backgroundColor: Kplatte1[1],
+                  backgroundColor: appTheme[background],
                   floating: true,
                   pinned: true,
                   snap: true,
                   bottom: TabBar(
-                    labelColor: Colors.blue,
-                    unselectedLabelColor: Colors.white,
+                    labelColor: appTheme[label],
+                    unselectedLabelColor: appTheme[txt],
                     controller: _controller,
                     labelStyle: txtstyle,
+                    indicatorColor: appTheme[label],
                     tabs: tabs,
                   ),
+                  actionsIconTheme: IconThemeData(color: appTheme[txt]),
+                  iconTheme: IconThemeData(color: appTheme[txt]),
                   actions: [
                     Padding(
                       padding: const EdgeInsets.only(right: 8),
@@ -78,7 +84,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                   ],
                   title: Text(
                     'Movie Box',
-                    style: GoogleFonts.abel(),
+                    style: GoogleFonts.abel().copyWith(color: appTheme[txt]),
                   ),
                 ),
               ];

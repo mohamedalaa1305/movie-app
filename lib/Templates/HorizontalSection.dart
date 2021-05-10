@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:movie_app/Constants.dart';
 import 'package:movie_app/Controllers/DataController.dart';
@@ -45,7 +43,7 @@ class _HorizontalSectionState extends State<HorizontalSection> {
               if (data.getList(widget.mediaType, widget.tabIndex).isEmpty) {
                 data.loadNext(widget.mediaType, widget.tabIndex);
                 return Container(
-                  color: Kplatte1[0],
+                  color: appTheme[background],
                   height: 205,
                   child: Center(
                     child: CircularProgressIndicator(),
@@ -53,7 +51,7 @@ class _HorizontalSectionState extends State<HorizontalSection> {
                 );
               }
               return Container(
-                color: Kplatte1[0],
+                color: appTheme[background],
                 height: MediaQuery.of(context).size.width * 0.25 / 0.5,
                 child: ListView.builder(
                   padding: EdgeInsets.only(left: 10),

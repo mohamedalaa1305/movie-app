@@ -19,7 +19,19 @@ class Person extends Media {
       mediaType;
   List<MediaImage> images;
   List<Tuple2<Media, String>> credits, movies, shows;
-
+  Person.clone(Person p) {
+    this.birthday = p.birthday;
+    this.biography = p.biography;
+    this.id = p.id;
+    this.profileImgUrl = p.profileImgUrl;
+    this.placeOfBirth = p.placeOfBirth;
+    this.imdbID = p.imdbID;
+    this.name = p.name;
+    this.character = p.character;
+    this.job = p.job;
+    this.knownFor = p.knownFor;
+    this.mediaType = p.mediaType;
+  }
   Person({
     @required this.id,
     this.name,
@@ -48,17 +60,16 @@ class Person extends Media {
     this.credits = [];
     this.movies = [];
     this.shows = [];
-    // print("fetching from api");
     this.credits = fetchPersonCredits(response);
-    // print("credits len = " + credits.length.toString());
+    List<Tuple2<Media, String>> tmp1 = [];
+    List<Tuple2<Media, String>> tmp2 = [];
     for (var pair in credits) {
-      // print("mediaType = " + pair.item1.mediaType);
       if (pair.item1.mediaType == 'movie')
-        movies.add(pair);
+        tmp1.add(pair);
       else
-        shows.add(pair);
+        tmp2.add(pair);
     }
-    // print("movies len = " + movies.length.toString());
-    // print("shows len = " + shows.length.toString());
+    movies = removeDuplicates2(tmp1);
+    shows = removeDuplicates2(tmp2);
   }
 }

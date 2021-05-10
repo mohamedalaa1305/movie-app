@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/Constants.dart';
 
 class SectionHead extends StatelessWidget {
@@ -12,14 +13,19 @@ class SectionHead extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-            padding: EdgeInsets.only(left: 16),
-            alignment: Alignment.centerLeft,
-            child: Text(
-              title,
-              textAlign: TextAlign.start,
-              style: kSectionTitleTextStyle,
+          padding: EdgeInsets.only(left: 16),
+          alignment: Alignment.centerLeft,
+          child: Text(
+            title,
+            textAlign: TextAlign.start,
+            style: GoogleFonts.abel().copyWith(
+              fontSize: 18,
+              letterSpacing: 2,
+              color: appTheme[txt],
+              fontWeight: FontWeight.bold,
             ),
           ),
+        ),
         child,
       ],
     );

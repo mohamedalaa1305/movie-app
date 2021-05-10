@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/Controllers/PersonController.dart';
 import 'package:movie_app/Models/Media.dart';
 import 'package:movie_app/Models/MediaImage.dart';
-import 'package:movie_app/Templates/CustomFlexibleSpaceBar.dart';
 import 'package:movie_app/Templates/InfoRow.dart';
 import 'package:movie_app/Templates/Loading.dart';
 import 'package:movie_app/Templates/MediaCard.dart';
@@ -28,7 +27,7 @@ class PersonScreen extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => PersonController(),
       child: Scaffold(
-        backgroundColor: Kplatte1[1],
+        backgroundColor: appTheme[background],
         body: SafeArea(
           child: Consumer<PersonController>(
             builder: (_, data, __) {
@@ -50,8 +49,10 @@ class PersonScreen extends StatelessWidget {
       headerSliverBuilder: (context, value) {
         return [
           SliverAppBar(
-            backgroundColor: Kplatte1[1],
+            backgroundColor: appTheme[background],
             pinned: true,
+            actionsIconTheme: IconThemeData(color: appTheme[txt]),
+            iconTheme: IconThemeData(color: appTheme[txt]),
             actions: [
               IconButton(
                 onPressed: () => navigatePushOnly(context, Home()),
@@ -70,7 +71,7 @@ class PersonScreen extends StatelessWidget {
                       ? Text(
                           data.person.name,
                           style: GoogleFonts.abel().copyWith(
-                            color: Colors.white,
+                            color: appTheme[txt],
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                             letterSpacing: 1,
@@ -116,7 +117,7 @@ class PersonScreen extends StatelessWidget {
                                   child: Text(
                                     data.person.name,
                                     style: GoogleFonts.abel().copyWith(
-                                      color: Colors.white,
+                                      color: appTheme[txt],
                                       fontSize: 24,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -127,13 +128,13 @@ class PersonScreen extends StatelessWidget {
                                     InfoRow(
                                       icon: Icons.work_rounded,
                                       iconsize: 12,
-                                      txt: data.person.knownFor,
+                                      info: data.person.knownFor,
                                       mxlines: 2,
                                     ),
                                     InfoRow(
                                       icon: Icons.cake_rounded,
                                       iconsize: 12,
-                                      txt: (data.person.birthday == 'null')
+                                      info: (data.person.birthday == 'null')
                                           ? 'Unknown'
                                           : data.person.birthday,
                                       mxlines: 2,
@@ -141,7 +142,7 @@ class PersonScreen extends StatelessWidget {
                                     InfoRow(
                                       icon: Icons.location_on_rounded,
                                       iconsize: 12,
-                                      txt: (data.person.placeOfBirth == 'null')
+                                      info: (data.person.placeOfBirth == 'null')
                                           ? 'Unknown'
                                           : data.person.placeOfBirth,
                                       mxlines: 2,
@@ -204,13 +205,13 @@ class PersonScreen extends StatelessWidget {
                             padding: EdgeInsets.symmetric(
                                 horizontal: 4, vertical: 2),
                             decoration: BoxDecoration(
-                              color: Kplatte1[1],
+                              color: appTheme[background],
                               borderRadius: BorderRadius.circular(4),
                             ),
                             child: Text(
                               data.person.images.length.toString() + ' Images',
                               style: GoogleFonts.abel().copyWith(
-                                color: Colors.white,
+                                color: appTheme[txt],
                                 fontSize: 12,
                               ),
                             ),
@@ -249,7 +250,7 @@ class PersonScreen extends StatelessWidget {
                 }
                 if (movies.isEmpty) return NothingToShowContainer();
                 return Container(
-                  height: MediaQuery.of(context).size.height * 0.28,
+                  height: MediaQuery.of(context).size.height * 0.3,
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     padding: EdgeInsets.all(16),

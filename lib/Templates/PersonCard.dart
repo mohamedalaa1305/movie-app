@@ -52,7 +52,7 @@ class PersonCard extends StatelessWidget {
             child: Text(
               person.name,
               style: GoogleFonts.abel().copyWith(
-                color: Colors.white,
+                color: appTheme[txt],
                 fontSize: 10,
               ),
               textAlign: TextAlign.center,
@@ -65,7 +65,7 @@ class PersonCard extends StatelessWidget {
             child: Text(
               (person.character.isEmpty) ? person.job : person.character,
               style: GoogleFonts.abel().copyWith(
-                color: Colors.white54,
+                color: appTheme[subText],
                 fontSize: 10,
               ),
               textAlign: TextAlign.center,

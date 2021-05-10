@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:movie_app/Controllers/MovieController.dart';
 import 'package:movie_app/Controllers/SeasonController.dart';
 import 'package:movie_app/Models/TvShow.dart';
 import 'package:movie_app/Templates/CustomFlexibleSpaceBar.dart';
 import 'package:movie_app/Templates/EpisodeCard.dart';
 import 'package:movie_app/Templates/InfoRow.dart';
-import 'package:movie_app/Templates/MediaCard.dart';
 import 'package:movie_app/Templates/OverviewContainer.dart';
 import 'package:movie_app/Templates/SectionHead.dart';
 import 'package:provider/provider.dart';
@@ -30,7 +27,7 @@ class SeasonScreen extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => SeasonController(),
       child: Scaffold(
-        backgroundColor: Kplatte1[1],
+        backgroundColor: appTheme[background],
         body: SafeArea(
           child: Consumer<SeasonController>(
             builder: (_, data, __) {
@@ -52,8 +49,10 @@ class SeasonScreen extends StatelessWidget {
       headerSliverBuilder: (context, value) {
         return [
           SliverAppBar(
-            backgroundColor: Kplatte1[1],
+            backgroundColor: appTheme[background],
             pinned: true,
+            actionsIconTheme: IconThemeData(color: appTheme[txt]),
+            iconTheme: IconThemeData(color: appTheme[txt]),
             actions: [
               IconButton(
                 onPressed: () => navigatePushOnly(context, Home()),
@@ -75,11 +74,11 @@ class SeasonScreen extends StatelessWidget {
                 info2: InfoRow(
                   icon: Icons.list_rounded,
                   iconsize: 12,
-                  txt: splitByDots(show?.genres) ?? '',
+                  info: splitByDots(show?.genres) ?? '',
                   mxlines: 2,
                 ),
                 info3: InfoRow(
-                  txt: (data.season.airdate.length > 3)
+                  info: (data.season.airdate.length > 3)
                       ? data.season.airdate.substring(0, 4)
                       : 'unknown',
                   icon: Icons.calendar_today_rounded,

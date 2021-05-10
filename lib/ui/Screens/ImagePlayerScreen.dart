@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/Constants.dart';
 import 'package:movie_app/Models/MediaImage.dart';
-import 'package:movie_app/Templates/IconText.dart';
 
 class ImagePlayerScreen extends StatefulWidget {
   final List<MediaImage> images;
@@ -56,7 +55,7 @@ class _ImagePlayerScreenState extends State<ImagePlayerScreen> {
     final PageController controller =
         PageController(initialPage: 0, keepPage: true);
     return Scaffold(
-      backgroundColor: Kplatte1[1],
+      backgroundColor: appTheme[background],
       body: Stack(
         fit: StackFit.expand,
         children: [

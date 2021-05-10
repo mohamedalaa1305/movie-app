@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/Constants.dart';
 import 'package:movie_app/Models/Media.dart';
-import 'package:movie_app/ui/MediaDetails.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:movie_app/ui/Screens/MovieScreen.dart';
 import 'package:movie_app/ui/Screens/TvShowScreen.dart';
@@ -49,7 +48,7 @@ class MediaGridPosterConatainer extends StatelessWidget {
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 2, vertical: 1),
                     decoration: BoxDecoration(
-                      color: Kplatte1[1],
+                      color: appTheme[background],
                       borderRadius: BorderRadius.circular(5),
                     ),
                     child: Center(
@@ -58,7 +57,7 @@ class MediaGridPosterConatainer extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: GoogleFonts.robotoSlab().fontFamily,
-                          color: Colors.white,
+                          color: appTheme[txt],
                           fontSize: 11,
                         ),
                       ),
@@ -71,7 +70,7 @@ class MediaGridPosterConatainer extends StatelessWidget {
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 2, vertical: 1),
                     decoration: BoxDecoration(
-                      color: Kplatte1[1],
+                      color: appTheme[background],
                       borderRadius: BorderRadius.circular(5),
                     ),
                     child: Center(
@@ -81,7 +80,7 @@ class MediaGridPosterConatainer extends StatelessWidget {
                             : media.releasedate.substring(0, 4),
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          color: Colors.white,
+                          color: appTheme[txt],
                           fontFamily: GoogleFonts.robotoSlab().fontFamily,
                           fontSize: 11,
                         ),
@@ -116,7 +115,7 @@ class MediaGridPosterConatainer extends StatelessWidget {
               child: AutoSizeText(
                 media.title,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: appTheme[txt],
                   // fontSize: 14,
                 ),
                 overflow: TextOverflow.ellipsis,

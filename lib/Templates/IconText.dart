@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../Constants.dart';
+
 class IconText extends StatelessWidget {
-  final String txt;
+  final String text;
   final IconData icon;
   const IconText({
     Key key,
-    @required this.txt,
+    @required this.text,
     @required this.icon,
   }) : super(key: key);
 
@@ -17,9 +19,9 @@ class IconText extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Text(
-            txt,
+            text,
             style: GoogleFonts.robotoSlab().copyWith(
-              color: Colors.white,
+              color: appTheme[txt],
               fontSize: 11,
             ),
           ),
@@ -30,7 +32,7 @@ class IconText extends StatelessWidget {
         ],
       ),
       data: IconThemeData(
-        color: Colors.white,
+        color: appTheme[txt],
         size: 13,
       ),
     );

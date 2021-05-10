@@ -49,13 +49,13 @@ class SeasonCard extends StatelessWidget {
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 2),
                       decoration: BoxDecoration(
-                        color: Kplatte1[1],
+                        color: appTheme[background],
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: Text(
                         season.airdate.substring(0, 4),
                         style: GoogleFonts.abel().copyWith(
-                          color: Colors.white,
+                          color: appTheme[txt],
                           fontSize: 12,
                         ),
                       ),
@@ -89,7 +89,7 @@ class SeasonCard extends StatelessWidget {
               child: Text(
                 season.name,
                 style: GoogleFonts.abel().copyWith(
-                  color: Colors.white,
+                  color: appTheme[txt],
                   fontSize: 13,
                 ),
                 // textAlign: TextAlign.center,
@@ -104,7 +104,7 @@ class SeasonCard extends StatelessWidget {
               child: Text(
                 season.episodecount + ' Episodes',
                 style: GoogleFonts.abel().copyWith(
-                  color: Colors.white54,
+                  color: appTheme[subText],
                   fontSize: 11,
                 ),
                 // textAlign: TextAlign.center,

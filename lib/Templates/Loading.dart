@@ -8,6 +8,7 @@ class Loading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: appTheme[background],
       height: height ?? 180.0,
       child: loading,
     );

@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:movie_app/Models/MediaImage.dart';
 import 'package:movie_app/Models/MediaVideo.dart';
 import 'package:movie_app/Network.dart';
@@ -62,23 +59,48 @@ class Media {
     similarpageidx = 1;
     similarpages = -1;
     recommendationspages = -1;
-    // similar = [];
-    // recommendations = [];
     totalsimilar = -1;
     totalrecommendations = -1;
-    // cast = [];
-    // crew = [];
-    // posters = [];
-    // backdrops = [];
-    // videos = [];
     downloadedCredits = false;
-    // downloadedVideos = false;
-    // trailer = new MediaVideo(id: '-1', key: '-1', site: 'youtube');
   }
+  Media.clone(Media media) {
+    this.id = media.id;
+    this.recommendationspageidx = media.recommendationspageidx;
+    this.similarpageidx = media.similarpageidx;
+    this.similarpages = media.similarpages;
+    this.recommendationspages = media.recommendationspages;
+    this.totalsimilar = media.totalsimilar;
+    this.totalrecommendations = media.totalrecommendations;
+    this.downloadedCredits = media.downloadedCredits;
+//?    this.trailer = new MediaVideo.clone(media.trailer);
+    this.id = media.id;
+    this.title = media.title;
+    this.posterurl = media.posterurl;
+    this.backdropurl = media.backdropurl;
+    this.overview = media.overview;
+    this.releasedate = media.releasedate;
+    this.runtime = media.runtime;
+    this.votecount = media.votecount;
+    this.voteavg = media.voteavg;
+    this.status = media.status;
+    this.mediaType = media.mediaType;
+    this.imdbID = media.imdbID;
+    this.genres = new List<String>.from(media.genres);
+    this.cast = new List<Person>.from(media.cast);
+    this.crew = new List<Person>.from(media.crew);
+    this.mediaType = media.mediaType;
+    this.posters = new List<MediaImage>.from(media.posters);
+    this.backdrops = new List<MediaImage>.from(media.backdrops);
+    this.recommendations= new List<Media>.from(media.recommendations);
+    this.similar = new List<Media>.from(media.similar);
+    this.videos = new List<MediaVideo>.from(media.videos);
+  }
+
   Future<void> getCredits() async {
     var response = await api.getCredits(id, mediaType);
-    this.cast = fetchCredits(response, 'cast');
-    this.crew = fetchCredits(response, 'crew');
+    this.cast = removeDuplicates(fetchCredits(response, 'cast'), 'cast');
+    this.crew = removeDuplicates(fetchCredits(response, 'crew'), 'crew');
+
     downloadedCredits = true;
   }
 

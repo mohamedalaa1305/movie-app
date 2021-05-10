@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 import 'package:movie_app/Models/MediaImage.dart';
 import 'package:movie_app/Models/MediaVideo.dart';
 import 'package:movie_app/Models/Person..dart';
@@ -11,6 +10,55 @@ import 'Models/Media.dart';
 import 'Models/Movie.dart';
 import 'Models/TvShow.dart';
 import 'Network.dart';
+
+List<Person> removeDuplicates(List<Person> list, String type) {
+  List<Person> ans = [];
+  Set<String> ids = {};
+  for (var person in list) {
+    if (ids.contains(person.id)) continue;
+    ids.add(person.id);
+    Person p = new Person.clone(person);
+    (type == 'cast') ? p.character = '' : p.job = '';
+    ans.add(p);
+  }
+  for (var person in ans) {
+    for (var p in list) {
+      if (person.id != p.id) continue;
+      if (type == 'cast') {
+        (person.character.isEmpty)
+            ? person.character += p.character
+            : person.character += ', ' + p.character;
+      } else {
+        (person.job.isEmpty) ? person.job += p.job : person.job += ', ' + p.job;
+      }
+    }
+  }
+  return ans;
+}
+
+List<Tuple2<Media, String>> removeDuplicates2(
+    List<Tuple2<Media, String>> list) {
+  List<Tuple2<Media, String>> ans = [];
+  List<Tuple2<Media, String>> tmp = [];
+  Set<String> ids = {};
+  Map<String, String> mp = {};
+  for (var tuple in list) {
+    if (mp.containsKey(tuple.item1.id)) {
+      String newValue = mp[tuple.item1.id] + ', ' + tuple.item2;
+      mp.update(tuple.item1.id, (value) => newValue);
+      continue;
+    }
+    mp.addEntries([MapEntry(tuple.item1.id, tuple.item2)]);
+  }
+  for (var tuple in list) {
+    if (ids.contains(tuple.item1.id)) continue;
+    Tuple2<Media, String> t2 = new Tuple2(tuple.item1, mp[tuple.item1.id]);
+    ids.add(tuple.item1.id);
+    tmp.add(t2);
+  }
+  for (int i = tmp.length - 1; i > -1; i--) ans.add(tmp[i]);
+  return ans;
+}
 
 List<Media> fetchSimilarOrRecommendations(var response, String mediaType) {
   List<Media> ans = [];
@@ -186,13 +234,13 @@ List<Season> fetchSeasons(var response) {
 }
 
 bool equal(List<Media> l1, List<Media> l2) {
-  print("prev len = " + l1.length.toString());
-  print('next len = ' + l2.length.toString());
+  // print("prev len = " + l1.length.toString());
+  // print('next len = ' + l2.length.toString());
   if (l1.length != l2.length) return false;
   for (int i = 0; i < l1.length; i++) {
     if (l1[i].id != l2[i].id) return false;
   }
-  print("next = prev");
+  // print("next = prev");
   return true;
 }
 

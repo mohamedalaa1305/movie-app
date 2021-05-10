@@ -42,12 +42,19 @@ class Images extends StatelessWidget {
                 Positioned(
                   bottom: 4,
                   left: 8,
-                  child: Text(
-                    posters.length.toString() + ' Posters',
-                    style: GoogleFonts.abel().copyWith(
-                      color: Colors.white,
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 3),
+                    decoration: BoxDecoration(
+                      color: appTheme[background],
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Text(
+                      posters.length.toString() + ' Posters',
+                      style: GoogleFonts.abel().copyWith(
+                        color: appTheme[txt],
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
@@ -96,12 +103,19 @@ class Images extends StatelessWidget {
                 Positioned(
                   bottom: 4,
                   left: 8,
-                  child: Text(
-                    backdrops.length.toString() + ' Backdrops',
-                    style: GoogleFonts.abel().copyWith(
-                      color: Colors.white,
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 3),
+                    decoration: BoxDecoration(
+                      color: appTheme[background],
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Text(
+                      backdrops.length.toString() + ' Backdrops',
+                      style: GoogleFonts.abel().copyWith(
+                        color: appTheme[txt],
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),

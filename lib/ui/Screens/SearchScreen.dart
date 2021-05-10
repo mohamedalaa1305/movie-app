@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/Constants.dart';
 import 'package:movie_app/Controllers/SearchController.dart';
+import 'package:movie_app/Controllers/ThemeController.dart';
 import 'package:movie_app/Models/Media.dart';
 import 'package:movie_app/Templates/SearchGrid.dart';
+import 'package:movie_app/ui/Menus/AppDrawer.dart';
 import 'package:provider/provider.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -53,8 +55,10 @@ class _SearchScreenState extends State<SearchScreen>
   @override
   Widget build(BuildContext context) {
     final sc = context.watch<SearchController>();
+    final tc = context.read<ThemeController>();
     return Scaffold(
-      backgroundColor: Kplatte1[1],
+      drawer: AppDrawer(state: tc.state, idx: 1,),
+      backgroundColor: appTheme[background],
       body: SafeArea(
         child: DefaultTabController(
           length: 2,
@@ -63,34 +67,37 @@ class _SearchScreenState extends State<SearchScreen>
             headerSliverBuilder: (context, value) {
               return [
                 SliverAppBar(
-                  backgroundColor: Kplatte1[1],
+                  backgroundColor: appTheme[background],
                   floating: true,
                   pinned: true,
                   snap: true,
                   bottom: TabBar(
-                    labelColor: Colors.blue,
-                    unselectedLabelColor: Colors.white,
+                    labelColor: appTheme[label],
+                    unselectedLabelColor: appTheme[txt],
                     controller: _controller,
                     labelStyle: txtstyle,
                     tabs: tabs,
+                    indicatorColor: appTheme[label],
                   ),
+                  iconTheme: IconThemeData(color: appTheme[txt]),
                   actions: [],
                   title: TextField(
+                    autofocus: true,
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       focusedBorder: InputBorder.none,
                       contentPadding: EdgeInsets.symmetric(horizontal: 4),
                       hintStyle: GoogleFonts.abel().copyWith(
-                        color: Colors.white54,
+                        color: appTheme[subText],
                         fontSize: 16,
                       ),
-                      hoverColor: Colors.white,
-                      fillColor: Colors.white,
+                      hoverColor: appTheme[txt],
+                      fillColor: appTheme[txt],
                       hintText: 'Enter a search term',
                     ),
-                    cursorColor: Colors.white,
+                    cursorColor: appTheme[txt],
                     style: GoogleFonts.abel().copyWith(
-                      color: Colors.white,
+                      color: appTheme[txt],
                       fontSize: 16,
                     ),
                     onChanged: (qry) => update(qry),
@@ -110,7 +117,7 @@ class _SearchScreenState extends State<SearchScreen>
                         child: Text(
                           'No Results Found',
                           style: GoogleFonts.abel().copyWith(
-                            color: Colors.white54,
+                            color: appTheme[subText],
                             fontSize: 24,
                           ),
                         ),
@@ -130,7 +137,7 @@ class _SearchScreenState extends State<SearchScreen>
                         child: Text(
                           'No Results Found',
                           style: GoogleFonts.abel().copyWith(
-                            color: Colors.white54,
+                            color: appTheme[subText],
                             fontSize: 24,
                           ),
                         ),

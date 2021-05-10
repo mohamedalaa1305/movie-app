@@ -5,7 +5,6 @@ import 'package:movie_app/Models/Media.dart';
 import 'package:movie_app/Models/MediaImage.dart';
 import 'package:movie_app/Models/MediaVideo.dart';
 import 'package:movie_app/Models/Person..dart';
-import 'package:movie_app/Models/Season.dart';
 import 'package:movie_app/Templates/CustomFlexibleSpaceBar.dart';
 import 'package:movie_app/Templates/Images.dart';
 import 'package:movie_app/Templates/InfoRow.dart';
@@ -34,7 +33,7 @@ class TvShowScreen extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => TvShowController(),
       child: Scaffold(
-        backgroundColor: Kplatte1[1],
+        backgroundColor: appTheme[background],
         body: SafeArea(
           child: Consumer<TvShowController>(
             builder: (_, data, __) {
@@ -56,8 +55,10 @@ class TvShowScreen extends StatelessWidget {
       headerSliverBuilder: (context, value) {
         return [
           SliverAppBar(
-            backgroundColor: Kplatte1[1],
+            backgroundColor: appTheme[background],
             pinned: true,
+            actionsIconTheme: IconThemeData(color: appTheme[txt]),
+            iconTheme: IconThemeData(color: appTheme[txt]),
             actions: [
               IconButton(
                 onPressed: () => navigatePushOnly(context, Home()),
@@ -80,17 +81,17 @@ class TvShowScreen extends StatelessWidget {
                 info1: InfoRow(
                   icon: Icons.list_rounded,
                   iconsize: 12,
-                  txt: splitByDots(data.show?.genres) ?? '',
+                  info: splitByDots(data.show?.genres) ?? '',
                   mxlines: 2,
                 ),
                 info2: InfoRow(
                   icon: Icons.calendar_today_rounded,
                   iconsize: 12,
-                  txt: data.show?.releasedate ?? 'unknown',
+                  info: data.show?.releasedate ?? 'unknown',
                   mxlines: 1,
                 ),
                 info3: InfoRow(
-                  txt: data.show?.status ?? 'null',
+                  info: data.show?.status ?? 'null',
                   icon: Icons.live_tv_rounded,
                   iconsize: 12,
                   mxlines: 1,
