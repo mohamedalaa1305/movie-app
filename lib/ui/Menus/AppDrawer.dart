@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/Controllers/ThemeController.dart';
 import 'package:movie_app/Helper.dart';
+import 'package:movie_app/ui/Screens/DiscoverScreen.dart';
 import 'package:movie_app/ui/Screens/HomeScreen.dart';
 import 'package:movie_app/ui/Screens/SearchScreen.dart';
 import 'package:provider/provider.dart';
@@ -149,17 +150,19 @@ class _AppDrawerState extends State<AppDrawer> {
                   idx = 2;
                 });
                 Navigator.pop(context);
+                navigatePush(context, DiscoverScreen());
               },
               title: Row(
                 children: [
                   Icon(
-                    Icons.widgets_rounded,
+                    Icons.bubble_chart_rounded,
+                    // Icons.wb_incandescent_rounded,
                     color: appTheme[txt],
                     size: 24,
                   ),
                   SizedBox(width: 8),
                   Text(
-                    'Genres',
+                    'Discover',
                     style: style,
                   ),
                 ],

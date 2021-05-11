@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/Models/MediaImage.dart';
 import 'package:movie_app/ui/Screens/ImagePlayerScreen.dart';
@@ -126,13 +127,32 @@ class Images extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                       onTap: () {
                         if (backdrops == null || backdrops.isEmpty) return;
-                        navigatePush(
+                        SystemChrome.setPreferredOrientations([
+                          DeviceOrientation.landscapeLeft,
+                          DeviceOrientation.landscapeRight,
+                        ]);
+                        Navigator.push(
                           context,
-                          ImagePlayerScreen(
-                            images: backdrops,
-                            landscape: true,
+                          MaterialPageRoute(
+                            builder: (context) => ImagePlayerScreen(
+                              images: backdrops,
+                              landscape: false,
+                            ),
                           ),
-                        );
+                        ).whenComplete(() {
+                          SystemChrome.setEnabledSystemUIOverlays(
+                              SystemUiOverlay.values);
+                          SystemChrome.setPreferredOrientations([
+                            DeviceOrientation.portraitUp,
+                          ]);
+                        });
+                        // navigatePush(
+                        //   context,
+                        //   ImagePlayerScreen(
+                        //     images: backdrops,
+                        //     landscape: true,
+                        //   ),
+                        // );
                       },
                     ),
                   ),

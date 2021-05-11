@@ -54,13 +54,16 @@ class _MediaScreenState extends State<MediaScreen>
               headerSliverBuilder: (context, value) {
                 return [
                   SliverAppBar(
+                    iconTheme: IconThemeData(color: appTheme[txt]),
                     backgroundColor: appTheme[background],
                     floating: true,
                     pinned: true,
                     snap: true,
                     title: Text(
                       (widget.mediaType == 'movie') ? 'Movies' : 'Tv Shows',
-                      style: GoogleFonts.abel(),
+                      style: GoogleFonts.abel().copyWith(
+                        color: appTheme[txt],
+                      ),
                     ),
                     brightness: Brightness.dark,
                     foregroundColor: appTheme[txt],

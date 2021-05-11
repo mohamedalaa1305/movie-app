@@ -55,9 +55,12 @@ class _SearchScreenState extends State<SearchScreen>
   @override
   Widget build(BuildContext context) {
     final sc = context.watch<SearchController>();
-    final tc = context.read<ThemeController>();
+    final tc = context.watch<ThemeController>();
     return Scaffold(
-      drawer: AppDrawer(state: tc.state, idx: 1,),
+      drawer: AppDrawer(
+        state: tc.state,
+        idx: 1,
+      ),
       backgroundColor: appTheme[background],
       body: SafeArea(
         child: DefaultTabController(

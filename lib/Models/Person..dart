@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:movie_app/Helper.dart';
 import 'package:tuple/tuple.dart';
 
+import '../Constants.dart';
 import 'Media.dart';
 import 'MediaImage.dart';
 

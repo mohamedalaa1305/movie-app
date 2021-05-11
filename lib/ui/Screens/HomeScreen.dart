@@ -47,7 +47,10 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     final tc = context.watch<ThemeController>();
     return Scaffold(
       backgroundColor: appTheme[background],
-      drawer: AppDrawer(state: tc.state, idx: 0,),
+      drawer: AppDrawer(
+        state: tc.state,
+        idx: 0,
+      ),
       body: SafeArea(
         child: DefaultTabController(
           length: 2,
@@ -84,7 +87,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                   ],
                   title: Text(
                     'Movie Box',
-                    style: GoogleFonts.abel().copyWith(color: appTheme[txt]),
+                    style: GoogleFonts.abel().copyWith(
+                        color: appTheme[txt], fontWeight: FontWeight.bold),
                   ),
                 ),
               ];

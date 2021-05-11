@@ -2,33 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/Network.dart';
 
-const List<Color> Kplatte1 = [
-  Color(0xff212121),
-  Color(0xff212121),
-  Color(0xff181818),
-  Color(0xff660708),
-  Color(0xffa4161a),
-  Color(0xffba181b),
-  Color(0xffe5383b),
-  Color(0xffb1a7a6),
-  Color(0xffd3d3d3),
-  Color(0xfff5f3f4)
-];
-const List<Color> Kplatte2 = [
-  Color(0xff004c4c),
-  Color(0xff2ec4b6),
-  Color(0xff000000),
-  Color(0xff14213d),
-  Color(0xfffca311),
-  Color(0xffe5e5e5),
-  Color(0xffffffff),
-  Color(0xff011627),
-  Color(0xff042443),
-  Color(0xfffdfffc),
-  Color(0xffe71d36),
-  Color(0xffff9f1c)
-];
-
+const String menubackground = 'mb';
 const String background = 'Background';
 const String txt = 'Text';
 const String button = 'Button';
@@ -43,7 +17,7 @@ const Map<String, Color> DarkTheme = {
   subText: Colors.white70,
   fill: Colors.black26,
   button: Color(0xff00acc1),
-  label: Colors.blue,
+  label: Color(0xff00acc1),
   readMore: Colors.cyan,
   backgroundinverse: Color(0xffdfdfdf),
 };
@@ -55,7 +29,7 @@ const Map<String, Color> LightTheme = {
   subText: Colors.black54,
   fill: Colors.white70,
   button: Color(0xff00acc1),
-  label: Colors.blue,
+  label: Color(0xff00acc1),
   readMore: Colors.cyan,
   backgroundinverse: Color(0xff212121),
   // button: Color(0xffff533e),
@@ -90,3 +64,4 @@ const Widget loading = Center(
   child: CircularProgressIndicator(),
 );
 final Network api = Network();
+Map<String, String> movieGenres = {}, tvGenres = {};

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movie_app/Constants.dart';
+import 'package:movie_app/Helper.dart';
 import 'HomeScreen.dart';
+import 'TestingScreen.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -11,7 +13,8 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 2), () {
+    preProcess();
+    Future.delayed(Duration(seconds: 1, microseconds: 750), () {
       Get.off(Home());
     });
   }
@@ -29,5 +32,11 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> preProcess() async {
+    movieGenres = fetchGenreList(await api.getGenres('movie'));
+    tvGenres = fetchGenreList(await api.getGenres('tv'));
+    print("genres len = " + movieGenres.length.toString());
   }
 }

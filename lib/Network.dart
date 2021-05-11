@@ -24,6 +24,23 @@ class Network {
     return null;
   }
 
+  Future<dynamic> getGenres(String mediaType) async {
+    final String url = domain + 'genre/$mediaType/list$apikey';
+    var response = await http.get(url);
+    return (response.statusCode == 200)
+        ? convert.jsonDecode(response.body)
+        : null;
+  }
+
+  Future<dynamic> discover(String mediaType, String genres, int page) async {
+    final String url =
+        '${domain}discover/$mediaType$apikey&sort_by=vote_count.desc&page=${page.toString()}&with_genres=$genres';
+    var response = await http.get(url);
+    return (response.statusCode == 200)
+        ? convert.jsonDecode(response.body)
+        : null;
+  }
+
   Future<dynamic> getCredits(String id, String mediaType) async {
     final String url = domain + mediaType + '/' + id + '/credits' + apikey;
     var response = await http.get(url);

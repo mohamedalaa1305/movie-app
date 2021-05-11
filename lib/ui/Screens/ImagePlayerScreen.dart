@@ -23,25 +23,23 @@ class _ImagePlayerScreenState extends State<ImagePlayerScreen> {
   @override
   void initState() {
     super.initState();
-    if (widget.landscape) {
       SystemChrome.setEnabledSystemUIOverlays([]);
-      Future.delayed(Duration(milliseconds: 250), () {
-        SystemChrome.setPreferredOrientations([
-          DeviceOrientation.landscapeRight,
-          DeviceOrientation.landscapeLeft,
-        ]);
-      });
-    }
+    // if (widget.landscape) {
+    //     SystemChrome.setPreferredOrientations([
+    //       DeviceOrientation.landscapeRight,
+    //       DeviceOrientation.landscapeLeft,
+    //     ]);
+    // }
   }
 
   @override
   void deactivate() {
     SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
-    if (widget.landscape) {
-      SystemChrome.setPreferredOrientations([
-        DeviceOrientation.portraitUp,
-      ]);
-    }
+    // if (widget.landscape) {
+    //   SystemChrome.setPreferredOrientations([
+    //     DeviceOrientation.portraitUp,
+    //   ]);
+    // }
     super.deactivate();
   }
 

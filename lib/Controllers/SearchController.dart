@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/Helper.dart';
 import 'package:movie_app/Models/Media.dart';
 
+import '../Constants.dart';
+
 class SearchController with ChangeNotifier {
   List<Media> movies = [], shows = [];
   String query = '';

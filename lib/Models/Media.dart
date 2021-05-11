@@ -1,10 +1,9 @@
 import 'package:movie_app/Models/MediaImage.dart';
 import 'package:movie_app/Models/MediaVideo.dart';
-import 'package:movie_app/Network.dart';
+import '../Constants.dart';
 import '../Helper.dart';
 import 'Person..dart';
 
-Network api = new Network();
 
 class Media {
   int recommendationspageidx,

@@ -60,6 +60,15 @@ List<Tuple2<Media, String>> removeDuplicates2(
   return ans;
 }
 
+Map<String, String> fetchGenreList(var response) {
+  Map<String, String> ans = {};
+  List<dynamic> genres = response['genres'];
+  for (var genre in genres)
+    ans.addEntries(
+        [MapEntry(genre['name'].toString(), genre['id'].toString())]);
+  return ans;
+}
+
 List<Media> fetchSimilarOrRecommendations(var response, String mediaType) {
   List<Media> ans = [];
   for (int i = 0; i < (response['results']).length; i++)
