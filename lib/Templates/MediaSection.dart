@@ -11,15 +11,15 @@ class MediaSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var _controller = ScrollController();
-    _controller.addListener(() async {
-      if (_controller.position.maxScrollExtent - _controller.position.pixels <=
-          200) {
-        await loadNext();
-      }
-    });
+    // _controller.addListener(() async {
+    //   if (_controller.position.maxScrollExtent == _controller.position.pixels) {
+    //     await loadNext();
+    //   }
+    // });
     return Container(
       height: MediaQuery.of(context).size.height * 0.235,
       child: ListView.builder(
+        primary: false,
         controller: _controller,
         scrollDirection: Axis.horizontal,
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),

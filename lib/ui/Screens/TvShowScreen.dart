@@ -66,7 +66,9 @@ class TvShowScreen extends StatelessWidget {
               ),
             ],
             brightness: Brightness.dark,
-            expandedHeight: MediaQuery.of(context).size.height * 0.5,
+            expandedHeight: (MediaQuery.of(context).size.width / 1.7 * 0.8) +
+                (MediaQuery.of(context).size.width * 0.265 / 0.67) +
+                50,
             flexibleSpace: LayoutBuilder(
               builder: (context, constraints) => CustomFlexibleSpaceBar(
                 parentcontext: context,

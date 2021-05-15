@@ -6,8 +6,7 @@ import 'MediaGridPosterContainer.dart';
 class MediaGrid extends StatefulWidget {
   final String mediaType;
   final int tabIndex;
-  MediaGrid({Key key,  this.mediaType, this.tabIndex})
-      : super(key: key);
+  MediaGrid({Key key, this.mediaType, this.tabIndex}) : super(key: key);
 
   @override
   _MediaGridState createState() => _MediaGridState();
@@ -51,8 +50,7 @@ class _MediaGridState extends State<MediaGrid> {
   }
 
   void controllerListener() {
-    if (_controller.position.maxScrollExtent - _controller.position.pixels <=
-        400) {
+    if (_controller.position.maxScrollExtent == _controller.position.pixels) {
       final dc = context.read<DataController>();
       dc.loadNext(widget.mediaType, widget.tabIndex);
     }

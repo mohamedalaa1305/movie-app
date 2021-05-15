@@ -56,6 +56,7 @@ class CustomFlexibleSpaceBar extends StatelessWidget {
       background: Stack(
         fit: StackFit.expand,
         children: [
+          //? backdrop photo
           Positioned(
             top: 0,
             left: 0,
@@ -68,6 +69,8 @@ class CustomFlexibleSpaceBar extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
+          //? poster photo
+          //? total height = (MediaQuery.of(context).size.width / 1.7 * 0.8) + (MediaQuery.of(context).size.width * 0.265 / 0.67) + 22
           Positioned(
             top: (MediaQuery.of(context).size.width / 1.7 * 0.8),
             left: 16,
@@ -86,6 +89,7 @@ class CustomFlexibleSpaceBar extends StatelessWidget {
               ),
             ),
           ),
+          //? rating
           Positioned(
             left: 16,
             top: (MediaQuery.of(context).size.width / 1.7 * 0.8) +
@@ -103,14 +107,16 @@ class CustomFlexibleSpaceBar extends StatelessWidget {
               ],
             ),
           ),
+          //? tmdb logo
           Positioned(
             top: (MediaQuery.of(context).size.width / 1.7 * 0.8) +
-                (MediaQuery.of(context).size.width * 0.265) / 0.67 +
+                (MediaQuery.of(context).size.width * 0.265 / 0.67) +
                 22,
             width: MediaQuery.of(context).size.width * 0.265,
             left: 16,
             child: Image.asset(logo),
           ),
+          //? media info
           Positioned(
             top: MediaQuery.of(context).size.width / 1.7 + 12,
             left: 16 + MediaQuery.of(context).size.width * 0.265 + 12,
@@ -134,6 +140,7 @@ class CustomFlexibleSpaceBar extends StatelessWidget {
               ],
             ),
           ),
+          //? play railer button
           Positioned(
             bottom: 8,
             right: 16,
@@ -171,6 +178,7 @@ class CustomFlexibleSpaceBar extends StatelessWidget {
               ),
             ),
           ),
+          //? play trailer inkwell
           Positioned(
             bottom: 8,
             right: 16,

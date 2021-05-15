@@ -78,7 +78,7 @@ class _HorizontalSectionState extends State<HorizontalSection> {
   }
 
   void controllerListener() {
-    if (_controller.position.atEdge && _controller.position.pixels != 0) {
+    if (_controller.position.maxScrollExtent == _controller.position.pixels) {
       final dc = context.read<DataController>();
       dc.loadNext(widget.mediaType, widget.tabIndex);
     }

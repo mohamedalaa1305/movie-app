@@ -23,7 +23,7 @@ class _ImagePlayerScreenState extends State<ImagePlayerScreen> {
   @override
   void initState() {
     super.initState();
-      SystemChrome.setEnabledSystemUIOverlays([]);
+    SystemChrome.setEnabledSystemUIOverlays([]);
     // if (widget.landscape) {
     //     SystemChrome.setPreferredOrientations([
     //       DeviceOrientation.landscapeRight,
