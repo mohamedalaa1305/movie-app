@@ -45,12 +45,15 @@ class PersonScreen extends StatelessWidget {
 
   Widget buildBody(PersonController data, BuildContext context) {
     return NestedScrollView(
-      floatHeaderSlivers: true,
+      floatHeaderSlivers: false,
       headerSliverBuilder: (context, value) {
         return [
           SliverAppBar(
             backgroundColor: appTheme[background],
+            floating: false,
+            primary: true,
             pinned: true,
+            snap: false,
             actionsIconTheme: IconThemeData(color: appTheme[txt]),
             iconTheme: IconThemeData(color: appTheme[txt]),
             actions: [

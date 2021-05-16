@@ -51,12 +51,15 @@ class TvShowScreen extends StatelessWidget {
 
   Widget buildBody(TvShowController data, BuildContext context) {
     return NestedScrollView(
-      floatHeaderSlivers: true,
+      floatHeaderSlivers: false,
       headerSliverBuilder: (context, value) {
         return [
           SliverAppBar(
             backgroundColor: appTheme[background],
+            floating: false,
+            primary: true,
             pinned: true,
+            snap: false,
             actionsIconTheme: IconThemeData(color: appTheme[txt]),
             iconTheme: IconThemeData(color: appTheme[txt]),
             actions: [
@@ -104,12 +107,16 @@ class TvShowScreen extends StatelessWidget {
         ];
       },
       body: ListView(
+        addAutomaticKeepAlives: true,
+        // primary: false,
         children: [
           OverviewContainer(overview: data.show.overview),
+          //? Seasons
           SectionHead(
             title: 'Seasons',
             child: SeasonsSection(seasons: data.show.seasons, show: data.show),
           ),
+          //? Cast
           SectionHead(
             title: 'Cast',
             child: Selector<TvShowController, List<Person>>(
@@ -124,6 +131,7 @@ class TvShowScreen extends StatelessWidget {
               },
             ),
           ),
+          //? Crew
           SectionHead(
             title: 'Crew',
             child: Selector<TvShowController, List<Person>>(
@@ -139,6 +147,7 @@ class TvShowScreen extends StatelessWidget {
               },
             ),
           ),
+          //? Images
           SizedBox(
             height: MediaQuery.of(context).size.width * 0.5,
             child: SectionHead(
@@ -162,6 +171,7 @@ class TvShowScreen extends StatelessWidget {
             ),
           ),
           SizedBox(height: 32),
+          //? Videos
           SizedBox(
             height: MediaQuery.of(context).size.width * 0.55,
             child: SectionHead(
@@ -179,6 +189,7 @@ class TvShowScreen extends StatelessWidget {
               ),
             ),
           ),
+          //? Similar
           SectionHead(
             title: 'Similar',
             child: Selector<TvShowController, List<Media>>(
@@ -198,6 +209,7 @@ class TvShowScreen extends StatelessWidget {
               },
             ),
           ),
+          //? Recommendations
           SectionHead(
             title: 'Recommendations',
             child: Selector<TvShowController, List<Media>>(
